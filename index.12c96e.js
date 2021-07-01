@@ -29763,29 +29763,32 @@ var Home_Home = () => {
     backgroundImage: "url(".concat(Home, ")"),
     backgroundPositionY: offset * 0.7 + "px"
   };
-  return /*#__PURE__*/react.createElement("section", {
-    id: "home",
-    style: mystyle,
-    className: Home_style("")
-  }, /*#__PURE__*/react.createElement("div", {
-    className: Home_style("timer")
-  }, /*#__PURE__*/react.createElement("div", {
-    className: Home_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
-    ref: el => {
-      wrapper = el;
-    },
-    className: Home_style("title")
-  }, /*#__PURE__*/react.createElement("h2", {
-    id: "title"
-  }, "\u015Alub Hani i Mi\u0142osza"), /*#__PURE__*/react.createElement("p", {
-    id: "title2"
-  }, "Odliczanie do najwa\u017Cniejszego dnia w naszym \u017Cyciu!")), /*#__PURE__*/react.createElement("div", {
-    ref: el => {
-      time = el;
-    },
-    className: Home_style("countdown")
-  }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy")))))));
+  return (
+    /*#__PURE__*/
+    // <section id="home" style={mystyle} className={style("")}>
+    react.createElement("section", {
+      id: "home",
+      className: Home_style("")
+    }, /*#__PURE__*/react.createElement("div", {
+      className: Home_style("timer")
+    }, /*#__PURE__*/react.createElement("div", {
+      className: Home_style("wrapper")
+    }, /*#__PURE__*/react.createElement("div", {
+      ref: el => {
+        wrapper = el;
+      },
+      className: Home_style("title")
+    }, /*#__PURE__*/react.createElement("h2", {
+      id: "title"
+    }, "\u015Alub Hani  i  Mi\u0142osza"), /*#__PURE__*/react.createElement("p", {
+      id: "title2"
+    }, "Odliczanie do najwa\u017Cniejszego dnia w naszym \u017Cyciu!")), /*#__PURE__*/react.createElement("div", {
+      ref: el => {
+        time = el;
+      },
+      className: Home_style("countdown")
+    }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy")))))))
+  );
 };
 
 /* harmony default export */ const components_Home_Home = (Home_Home);
