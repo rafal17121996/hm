@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+.Gift{
+ min-height: 30vh;
+ display: flex;
+ align-items: flex-end;
+ justify-content: center;
+ background-color: #8b9f81;
+ background-image: linear-gradient(#8b9f81, #2a3624);
+ font-family: 'Playfair Display', serif;
+ position: relative;
+ h1{
+    font-size: 50px;
+    color: #efb48e;
+    text-shadow: 1px 1px black;
+    font-weight: 400;
+ }
+ h2{
+    color: #efb48e;
+    text-shadow: 1px 1px #000000;
+    font-weight: 200;
+ }
+ &__wrapper{
+     width: 70%;
+     text-align: center;
+     padding: 30px;
+ }
+ img{
+  
+   width: 150px;
+
+ }
+}

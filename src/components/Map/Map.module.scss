@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,800;1,300&display=swap');
+
+.Map {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+  
+  
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    @media screen and (max-width: 960px) {
+    flex-direction: column;
+    align-items: center;
+    }
+  }
+  &__left {
+    width: 50%;
+  }
+  &__img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: auto;
+    box-shadow: 0 6px 20px rgba(43, 50, 63, 0.6);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(43, 50, 63, 0.6));
+    filter: drop-shadow(0 6px 20px rgba(43, 50, 63, 0.6));
+    @media screen and (max-width: 960px) {
+  margin-top: 20px;
+      }
+  }
+  &__right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 960px) {
+       width: 100%;
+     align-items: center;
+          }
+ 
+  }
+  &__map {
+    width: 50%;
+    height: 50%;
+    min-height: 200px;
+    margin-left: 20px;
+    @media screen and (max-width: 960px) {
+      width: 80%;
+      height: 200px;
+      margin-bottom: 25px;
+      margin-left: 0px;
+          }
+    
+  }
+  &__location {
+    padding: 20px;
+    @media screen and (max-width: 1500px) {
+      padding-bottom: 10px;
+      padding-top: 10px;
+            }
+    h2 {
+      text-align: left;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 50px;
+      color: #494747;
+      line-height: 1.2em;
+      @media screen and (max-width: 1500px) {
+        font-size: 2rem;
+              }
+      @media screen and (max-width: 960px) {
+        text-align: center;
+              }
+    }
+    p {
+        text-align: left;
+        font-family: 'Open Sans', sans-serif;
+        padding-top: 30px;
+        @media screen and (max-width: 1500px) {
+          padding-top: 10px;
+                }
+        @media screen and (max-width: 960px) {
+          text-align: center;
+                }
+    }
+  }
+  &__title {
+    font-size: 3em;
+    position: absolute;
+    top: 0;
+  }
+}

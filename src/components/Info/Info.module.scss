@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,800;1,300&display=swap');
+
+.Info{
+    min-height: 50vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    @media screen and (max-width: 960px) {
+        min-height: 110vh;
+        }
+    &__wrapper{
+        // width: 900px;
+        // background-color: rgb(199, 199, 199);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        h1{
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 50px;
+            color: #494747;
+            line-height: 1.2em;
+        }
+        span{
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #494747;
+            line-height: 1.2em;
+        }
+        @media screen and (max-width: 960px) {
+            flex-direction: column;
+            transform: translateY(0);
+            }
+    }
+    &__left{
+        width: 50%;
+        padding: 10px;
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        @media screen and (max-width: 960px) {
+            width: 90%;
+            }
+    }
+    &__wave{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    &__btn{
+        font-family: 'Open Sans', sans-serif;
+        display: block;
+        border: none;
+        // background-color: #E1C0BD;
+        margin: 35px auto;
+        background-color: transparent;
+        text-decoration: underline;
+        font-size: 2rem;
+        padding: 10px;
+        cursor: pointer;
+        color: #494747;
+        &:hover{
+            color: #9b7575;
+        }
+    }
+}

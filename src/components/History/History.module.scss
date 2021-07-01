@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,800;1,300&display=swap');
+.History {
+background-color: #efb48e;
+background-size: cover;
+background-attachment: fixed;
+background-position-x: center;
+background-position-y: bottom;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+min-height: 100vh;
+@media only screen and (max-width: 960px) {
+  min-height: 50vh;
+  background-attachment:scroll
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+    column-count: 2;
+    column-gap: 50%;
+    display: block;
+    width: 100%;
+    font-size:1.3rem;
+    text-align: justify;
+    padding: 60px;
+    color: #efb48e;
+    text-shadow: 1px 1px black;
+    text-indent: 20px;
+    @media only screen and (max-width: 1400px) {
+      }
+}
+&__text3{
+    background-color: #efb48e;
+    padding: 20px;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    .displayed-text{
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    
+}
+}
+.read-more-button{
+  text-decoration: underline;
+}

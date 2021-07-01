@@ -1,0 +1,98 @@
+.Popup {
+    &__popup_background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.055);
+      z-index: 1;
+    }
+    &__popup {
+      border-radius: 5px;
+      position: fixed;
+      width: 90vw;
+      height: 90vh;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #8b9f81;
+      padding: 50px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    &__close{
+      position: absolute;
+      z-index: 10000;
+      top: 0;
+      right: 0;
+      padding: 15px;
+      font-size: 2rem;
+      cursor: pointer;
+      @media only screen and (max-width: 960px) {
+        left: 0;
+        top: 25px;
+      }
+    }
+    &__btnWrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+      button{
+        margin: 0 20px;
+        width: 300px;
+        height: 94px;
+        border: none;
+        padding: 10px;
+        background-color: rgb(85, 104, 75);
+        font-size: 2rem;
+        color: beige;
+        text-shadow: 1px 1px black;
+        cursor: pointer;
+        &:hover{
+          background-color: #394633;
+      }
+      @media only screen and (max-width: 960px) {
+        font-size: .6rem;
+        padding: 0;
+        margin: 0 8px;
+        width: 500px;
+        height: 54px;
+      }
+      }
+    }
+    &__guest{
+      margin-bottom: 10px;
+      // padding: 10px;
+      // background-color: #0000002c;
+    }
+    p{
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: rgb(63, 78, 56);
+      line-height: 1.2em;
+      padding: 10px;
+      @media only screen and (max-width: 960px) {
+        font-size: .8rem;
+      }
+    }
+    h1{
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      font-weight: 700;
+      font-size: 3.5rem;
+      color: #efb48e;
+      line-height: 1.2em;
+      text-shadow: 1px 1px black;
+      @media only screen and (max-width: 960px) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
