@@ -204,7 +204,7 @@ module.exports = function xhrAdapter(config) {
 var utils = __webpack_require__(4867);
 var bind = __webpack_require__(1849);
 var Axios = __webpack_require__(321);
-var mergeConfig = __webpack_require__(8883);
+var mergeConfig = __webpack_require__(7185);
 var defaults = __webpack_require__(5655);
 
 /**
@@ -374,7 +374,7 @@ var utils = __webpack_require__(4867);
 var buildURL = __webpack_require__(5327);
 var InterceptorManager = __webpack_require__(782);
 var dispatchRequest = __webpack_require__(3572);
-var mergeConfig = __webpack_require__(8883);
+var mergeConfig = __webpack_require__(7185);
 
 /**
  * Create a new instance of Axios
@@ -718,7 +718,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 /***/ }),
 
-/***/ 8883:
+/***/ 7185:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -1755,7 +1755,7 @@ module.exports = {
 /***/ 4043:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = { "default": __webpack_require__(7185), __esModule: true };
+module.exports = { "default": __webpack_require__(3404), __esModule: true };
 
 /***/ }),
 
@@ -2291,7 +2291,7 @@ var createChangeEmitter = exports.E = function createChangeEmitter() {
 
 /***/ }),
 
-/***/ 7185:
+/***/ 3404:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 __webpack_require__(1867);
@@ -2410,7 +2410,7 @@ module.exports = function (it) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 var toLength = __webpack_require__(8728);
 var toAbsoluteIndex = __webpack_require__(6531);
 module.exports = function (IS_INCLUDES) {
@@ -3164,7 +3164,7 @@ module.exports = __webpack_require__(9666) ? Object.defineProperties : function 
 
 var pIE = __webpack_require__(6274);
 var createDesc = __webpack_require__(3101);
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 var toPrimitive = __webpack_require__(3206);
 var has = __webpack_require__(7069);
 var IE8_DOM_DEFINE = __webpack_require__(3758);
@@ -3186,7 +3186,7 @@ exports.f = __webpack_require__(9666) ? gOPD : function getOwnPropertyDescriptor
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 var gOPN = __webpack_require__(3230).f;
 var toString = {}.toString;
 
@@ -3254,7 +3254,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var has = __webpack_require__(7069);
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 var arrayIndexOf = __webpack_require__(7428)(false);
 var IE_PROTO = __webpack_require__(8989)('IE_PROTO');
 
@@ -3464,7 +3464,7 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ 7932:
+/***/ 7431:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
@@ -3643,7 +3643,7 @@ $export($export.S + $export.F * !__webpack_require__(6630)(function (iter) { Arr
 var addToUnscopables = __webpack_require__(9003);
 var step = __webpack_require__(5084);
 var Iterators = __webpack_require__(5449);
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
@@ -3790,7 +3790,7 @@ var isArray = __webpack_require__(1421);
 var anObject = __webpack_require__(2159);
 var isObject = __webpack_require__(6727);
 var toObject = __webpack_require__(6530);
-var toIObject = __webpack_require__(7932);
+var toIObject = __webpack_require__(7431);
 var toPrimitive = __webpack_require__(3206);
 var createDesc = __webpack_require__(3101);
 var _create = __webpack_require__(526);
@@ -24331,32 +24331,31 @@ if (false) { var ariaCurrentType; }
 var bem_css_modules = __webpack_require__(8893);
 // EXTERNAL MODULE: ./node_modules/react-scroll/modules/index.js
 var modules = __webpack_require__(6261);
+;// CONCATENATED MODULE: ./src/assets/219538867_411232146899970_8984585591312915675_n.png
+/* harmony default export */ const _219538867_411232146899970_8984585591312915675_n = (__webpack_require__.p + "d2be771604c5c73f3937ad6c4f50f6f1.png");
 ;// CONCATENATED MODULE: ./src/components/Navbar/MenuItem/MenuItem.jsx
 var MenuItems = [{
-  title: 'ODLICZANIE',
+  title: 'odliczanie',
   url: 'home',
   cName: 'nav-links'
 }, {
-  title: 'DOJAZD',
+  title: 'dojazd',
   url: 'route',
   cName: 'nav-links'
 }, {
-  title: 'PIOSENKI',
-  url: 'music',
-  cName: 'nav-links'
-}, {
-  title: 'KONTAKT',
+  title: 'kontakt',
   url: 'contact',
   cName: 'nav-links'
 }, {
-  title: 'GALERIA',
+  title: 'galeria',
   url: 'gallery',
   cName: 'nav-links'
 }];
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
+/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__logo-wrapper":"Navbar__logo-wrapper","Navbar__logo-border":"Navbar__logo-border","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.jsx
+
 
 
 
@@ -24403,30 +24402,31 @@ var Navbar = () => {
 
   var handleOnClick = () => {
     setIsOpen(prev => !prev);
-  };
+  }; // const itemStyle = isOpen
+  //   ? style("nav-menu", { active: true })
+  //   : style("nav-menu");
 
-  var itemStyle = isOpen ? style("nav-menu", {
-    active: true
-  }) : style("nav-menu");
+
   return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("nav", {
-    className: style("", {
-      hidden: !visible
-    })
+    className: style("")
+  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
+    className: style("logo-wrapper")
   }, /*#__PURE__*/react.createElement("div", {
+    className: style("logo-border")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: style("logo"),
+    src: _219538867_411232146899970_8984585591312915675_n,
+    alt: ""
+  }))), /*#__PURE__*/react.createElement("div", {
     className: style("wrapper")
   }, /*#__PURE__*/react.createElement("div", {
     className: style("menu-button"),
     onClick: handleOnClick
   }, /*#__PURE__*/react.createElement("i", {
     className: isOpen ? "fas fa-times" : "fas fa-bars"
-  })), /*#__PURE__*/react.createElement(modules/* Link */.rU, {
-    smooth: true,
-    duration: 1000,
-    to: "home",
-    className: style("title")
-  }), /*#__PURE__*/react.createElement("ul", {
-    className: itemStyle
-  }, Items))));
+  })), /*#__PURE__*/react.createElement("ul", {
+    className: style("nav-menu")
+  }, Items)))));
 };
 
 /* harmony default export */ const Navbar_Navbar = (Navbar);
@@ -29665,15 +29665,20 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 ;// CONCATENATED MODULE: ./src/components/Home/Home.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Home_module = ({"Home":"Home","zoom":"zoom","Home__timer":"Home__timer","Home__wrapper":"Home__wrapper","Home__title":"Home__title","Home__countdown":"Home__countdown"});
+/* harmony default export */ const Home_module = ({"Home":"Home","zoom":"zoom","Home__info-text":"Home__info-text","Home__timer":"Home__timer","Home__wrapper":"Home__wrapper","Home__title":"Home__title","Home__countdown":"Home__countdown"});
 ;// CONCATENATED MODULE: ./src/assets/Home.jpg
 /* harmony default export */ const Home = (__webpack_require__.p + "7ba22eeec9fb404854bbb56200ffba1a.jpg");
+// EXTERNAL MODULE: ./node_modules/axios/index.js
+var node_modules_axios = __webpack_require__(9669);
+var axios_default = /*#__PURE__*/__webpack_require__.n(node_modules_axios);
 ;// CONCATENATED MODULE: ./src/components/Home/Home.jsx
 
 
 
 
 var Home_style = (0,bem_css_modules/* default */.Z)(Home_module);
+
+
 
 
 
@@ -29686,6 +29691,27 @@ var Home_Home = () => {
   var [timerMinutes, setTimerMinutes] = (0,react.useState)('00');
   var [timerSecounds, setTimerSecounds] = (0,react.useState)('00');
   var [offset, setOffset] = (0,react.useState)();
+  var [guests, setGuests] = (0,react.useState)([]);
+  var history = useHistory();
+
+  var updateList = () => {
+    var guest = history.location.pathname.substring(1);
+    var config = {
+      headers: {
+        ApiKij: "12nfhfkjaha983ZKsakjh12989S11"
+      }
+    };
+    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), config).then(response => {
+      console.log(response);
+      setGuests(response.data);
+    }).catch(error => {
+      console.log('error');
+    });
+  };
+
+  (0,react.useEffect)(() => {
+    updateList();
+  }, [history]);
   var wrapper = (0,react.useRef)(null);
   var time = (0,react.useRef)(null);
 
@@ -29763,32 +29789,29 @@ var Home_Home = () => {
     backgroundImage: "url(".concat(Home, ")"),
     backgroundPositionY: offset * 0.7 + "px"
   };
-  return (
-    /*#__PURE__*/
-    // <section id="home" style={mystyle} className={style("")}>
-    react.createElement("section", {
-      id: "home",
-      className: Home_style("")
-    }, /*#__PURE__*/react.createElement("div", {
-      className: Home_style("timer")
-    }, /*#__PURE__*/react.createElement("div", {
-      className: Home_style("wrapper")
-    }, /*#__PURE__*/react.createElement("div", {
-      ref: el => {
-        wrapper = el;
-      },
-      className: Home_style("title")
-    }, /*#__PURE__*/react.createElement("h2", {
-      id: "title"
-    }, "\u015Alub Hani  i  Mi\u0142osza"), /*#__PURE__*/react.createElement("p", {
-      id: "title2"
-    }, "Odliczanie do najwa\u017Cniejszego dnia w naszym \u017Cyciu!")), /*#__PURE__*/react.createElement("div", {
-      ref: el => {
-        time = el;
-      },
-      className: Home_style("countdown")
-    }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy")))))))
-  );
+  return /*#__PURE__*/react.createElement("section", {
+    id: "home",
+    className: Home_style("")
+  }, /*#__PURE__*/react.createElement("div", {
+    className: Home_style("timer")
+  }, /*#__PURE__*/react.createElement("div", {
+    className: Home_style("wrapper")
+  }, /*#__PURE__*/react.createElement("div", {
+    ref: el => {
+      wrapper = el;
+    },
+    className: Home_style("title")
+  }, /*#__PURE__*/react.createElement("h2", {
+    id: "title"
+  }, "\u015Alub Hani  i  Mi\u0142osza"), /*#__PURE__*/react.createElement("p", {
+    className: Home_style("info-text"),
+    id: "title2"
+  }, "Odliczanie do dnia, w kt\xF3rym \u015Blubowa\u0107 b\u0119dziemy sobie mi\u0142o\u015B\u0107")), /*#__PURE__*/react.createElement("div", {
+    ref: el => {
+      time = el;
+    },
+    className: Home_style("countdown")
+  }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy")))))));
 };
 
 /* harmony default export */ const components_Home_Home = (Home_Home);
@@ -31614,9 +31637,6 @@ var Map = () => {
 /* harmony default export */ const Music_module = ({"Music":"Music","Music__title":"Music__title"});
 ;// CONCATENATED MODULE: ./src/assets/music.jpg
 /* harmony default export */ const music = (__webpack_require__.p + "dfe85202446955ab55df01d1fd15c2c5.jpg");
-// EXTERNAL MODULE: ./node_modules/axios/index.js
-var node_modules_axios = __webpack_require__(9669);
-var axios_default = /*#__PURE__*/__webpack_require__.n(node_modules_axios);
 ;// CONCATENATED MODULE: ./src/components/Music/Music.jsx
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -31806,7 +31826,7 @@ var Contact = () => {
 /* harmony default export */ const Info_module = ({"Info":"Info","Info__wrapper":"Info__wrapper","Info__left":"Info__left","Info__wave":"Info__wave","Info__btn":"Info__btn"});
 ;// CONCATENATED MODULE: ./src/components/Popup/Popup.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Popup_module = ({"Popup__popup_background":"Popup__popup_background","Popup__popup":"Popup__popup","Popup__close":"Popup__close","Popup__btnWrapper":"Popup__btnWrapper","Popup__guest":"Popup__guest","Popup":"Popup"});
+/* harmony default export */ const Popup_module = ({"Popup":"Popup","Popup__popup_background":"Popup__popup_background","Popup__popup":"Popup__popup","Popup__close":"Popup__close","Popup__btnWrapper":"Popup__btnWrapper","Popup__guest":"Popup__guest"});
 ;// CONCATENATED MODULE: ./src/components/Popup/Popup.jsx
 
 
@@ -31833,8 +31853,7 @@ var Popup = (_ref) => {
         ApiKij: "12nfhfkjaha983ZKsakjh12989S11"
       }
     };
-    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/".concat(guest), config).then(response => {
-      console.log(response);
+    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), config).then(response => {
       setGuests(response.data);
     }).catch(error => {
       console.log('error');
@@ -31865,11 +31884,19 @@ var Popup = (_ref) => {
       }
     };
     var data = {
-      firstName: item.firstName,
-      lastName: item.lastName,
-      guestConfirmationCode: item.guestConfirmationCode,
-      decisionStatus: number
-    };
+      weddingUniqueName: 'HaniaMiłosz',
+      guestConfirmations: [{
+        guestId: item.guestId,
+        decisionStatus: number
+      }]
+    }; // const data = {
+    //   weddingUniqueName : 'HaniaMiłosz'
+    //   firstName: item.firstName,
+    //   lastName: item.lastName,
+    //   guestConfirmationCode: item.guestConfirmationCode,
+    //   decisionStatus: number,
+    // };
+
     axios_default().post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
       console.log(response);
       updateList();
