@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import bemCssModules from "bem-css-modules";
 import { Link } from "react-scroll";
+import img from "../../assets/219538867_411232146899970_8984585591312915675_n.png";
 
 import { MenuItems } from "./MenuItem/MenuItem";
 import { StoreContext } from "../../store/StoreProvider";
@@ -57,25 +58,26 @@ const Navbar = () => {
     setIsOpen((prev) => !prev);
   };
 
-
-  const itemStyle = isOpen
-    ? style("nav-menu", { active: true })
-    : style("nav-menu");
-
-
   return (
     <>
-      <nav className={style("", { hidden: !visible })}>
+      <nav className={style("")}>
+        <div>
+          <div className={style("logo-wrapper")}>
+            <div className={style("logo-border")}>
+              <img className={style("logo")} src={img} alt="" />
+            </div>
+            
+          </div>
+          
         <div className={style("wrapper")}>
+          
           <div className={style("menu-button")} onClick={handleOnClick}>
             <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
           </div>
-         
-          <Link smooth={true} duration={1000} to="home" className={style("title")}>
-          </Link>
-
-          <ul className={itemStyle}>{Items}</ul>
+          <ul className={style("nav-menu")}>{Items}</ul>
         </div>
+        </div>
+        
        
       </nav>
     </>

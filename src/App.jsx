@@ -13,6 +13,9 @@ import Gallery from "./components/Gallery/Gallery";
 import Contact from "./components/Contact/Contact";
 import Info from "./components/Info/Info";
 import History from "./components/History/History";
+import Details from "./components/Details/Details";
+import Confirmation from "./components/Confirmation/Confirmation";
+import Wine from "./components/Wine/Wine";
 
 //const Navbar = lazy(() => import('./components/Navbar/Navbar'))
 
@@ -48,11 +51,10 @@ const App = () => {
                 <>
                   <Navbar />
                   <Home />
-                  <Info />
-                  <Map />
-                  {/* <History /> */}
-                  {/* <Music /> */}
-                  <Contact />
+                  <Details />
+                  <Contact /> 
+                  <Confirmation />
+                  <Wine />
                   <Gallery />
                 </>
               )}

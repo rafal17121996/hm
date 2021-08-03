@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+
+.Details{
+    min-height: 50vh;
+    font-family: 'Cormorant Garamond', serif;
+    &__wrapper{
+        min-height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    &__info-wrapper{
+        margin: 100px 200px 100px 200px;
+        display: flex;
+        justify-content: space-around;
+    }
+    &__info{
+        width: 400px;
+        height: 600px;
+        background-color: #F7F5F1;
+        border: solid 3px #968653;
+        padding: 10px;
+        position: relative;
+    }
+    &__info-title{
+        color: #968653;
+        text-align: center;
+        font-family: 'MonteCarlo', cursive;
+        padding-bottom: 100px;
+        font-size: 6rem;
+    }
+    &__info-text1{
+        text-align: center;
+        font-size: 2rem;
+    }
+    &__info-text2{
+
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    &__info-button{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        padding: 15px;
+        border: solid 3px #968653;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2rem;
+        margin-top: 50px;
+        cursor: pointer;
+    }
+    &__img{
+        display: block;
+        margin: 15px auto 15px auto;
+        width: 25%;
+    }
+}

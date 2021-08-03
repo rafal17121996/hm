@@ -8,31 +8,34 @@ import { useHistory } from "react-router";
 
 const style = bemCssModules(PopupStyles);
 
+let config = {
+  headers: {
+    ApiKij: process.env.apiKey,
+  },
+};
+
 const Popup = ({ open, onClose }) => {
   if (!open) return null;
 
   const [guests, setGuests] = useState([]);
+  const [guests2, setGuests2] = useState([]);
 
   const history = useHistory();
 
   const updateList = () => {
     const guest = history.location.pathname.substring(1);
-    console.log(guest);
-
-    let config = {
-      headers: {
-        ApiKij: "12nfhfkjaha983ZKsakjh12989S11",
-      },
-    };
 
     axios
       .get(
-        `https://weddingonline-test.azurewebsites.net/api/guest/getguests/${guest}`,
+        `https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMiłosz/${guest}`,
         config
       )
       .then((response) => {
-        console.log(response);
-        setGuests(response.data);
+        if (response.status == 200) {
+          setGuests(response.data);
+        } else {
+          alert("Coś poszło nie tak")
+        }
       })
       .catch((error) => {
         console.log('error');
@@ -41,7 +44,7 @@ const Popup = ({ open, onClose }) => {
 
   useEffect(() => {
     updateList();
-  }, [history]);
+  }, []);
 
   const escFunction = (event) => {
     if (event.keyCode === 27) {
@@ -64,11 +67,15 @@ const Popup = ({ open, onClose }) => {
     };
 
     const data = {
-      firstName: item.firstName,
-      lastName: item.lastName,
-      guestConfirmationCode: item.guestConfirmationCode,
-      decisionStatus: number,
+      weddingUniqueName : 'HaniaMiłosz',
+      guestConfirmations: [
+        {
+          guestId: item.guestId,
+          decisionStatus: number
+        }
+      ]
     };
+
 
     axios
       .post(
@@ -77,8 +84,19 @@ const Popup = ({ open, onClose }) => {
         config
       )
       .then((response) => {
-        console.log(response);
-        updateList();
+        console.log(response.status);
+        if (response.status == 200) {
+          alert('Dziękujemy za informację')
+          let newArray = [...guests]  ;
+          newArray[0].decisionStatus = number
+          console.log(newArray)
+          console.log(guests)
+          setGuests(
+            newArray
+          )
+        } else {
+          alert("Coś poszło nie tak")
+        }
       })
       .catch((error) => {
         console.log(error);

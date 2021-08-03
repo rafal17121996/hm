@@ -24,9 +24,11 @@
     "react-dom": "^17.0.1",
     "react-google-maps": "^9.4.5",
     "react-parallax": "^3.2.1",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scroll": "^1.8.1",
     "read-more-react": "^1.0.10",
+    "redux": "^4.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -36,6 +38,7 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.2",
+    "dotenv": "^10.0.0",
     "file-loader": "^6.2.0",
     "html-loader": "^2.0.0",
     "html-webpack-plugin": "^5.1.0",

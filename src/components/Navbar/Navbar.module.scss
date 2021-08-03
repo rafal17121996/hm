@@ -1,16 +1,18 @@
 $base-color: antiquewhite;
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap');
 .Navbar {
-  height: 80px;
-  width: 100vw;
+  // height: 80px;
+  width: 100%;
+  // position: absolute;
+  // left: 0;
+background-color: white;
   position: fixed;
   top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   font-size: 1.7rem;
   transition: top 0.6s;
   z-index: 1999;
+  font-family: 'Cormorant Garamond', serif;
   @media screen and (max-width: 960px) {
     background-color: transparent;
     box-shadow: 0 0px 0px rgba(43, 50, 63, 0.6);
@@ -26,34 +28,44 @@ $base-color: antiquewhite;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
     width: 100%;
   }
    
-
   &__logo{
     display: block;
-    height: 60px;
-    padding-left: 10px;
-    cursor: pointer;
+    width: 400px;
+
+  }
+  &__logo-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  &__logo-border{
+    padding-left: 150px;
+    padding-right: 150px;
+    border-bottom: 1px solid #aaa;
   }
 
   &__title {
     display: block;
     cursor: pointer;
-    color: black;
-    text-shadow: 2px 2px black;
+    color: #403F41;
+    text-shadow: 2px 2px #403F41;
     padding-left: 1rem;
+    border-bottom: 1px solid #aaa;
   }
 
   &__nav-menu {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(4, auto);
     gap: 10px;
     list-style: none;
     text-align: center;
     width: 100vw;
-    justify-content: end;
+    justify-content: center;
     margin-right: 2rem;
   }
 
@@ -61,7 +73,7 @@ $base-color: antiquewhite;
     height: 80px;
   }
   &__nav-links {
-    color: #e2a682;
+    color: #403F41;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -69,7 +81,7 @@ $base-color: antiquewhite;
     height: 100%;
     cursor: pointer;
     &:hover {
-      border-bottom: 4px solid #e2a682;
+      border-bottom: 4px solid #aaa;
       transition: all 0.2s ease-out;
     }
 

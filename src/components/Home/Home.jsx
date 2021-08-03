@@ -7,6 +7,8 @@ import { default as HomeStyles } from "./Home.module.scss";
 const style = bemCssModules(HomeStyles);
 import bg from "../../assets/Home.jpg";
 import { StoreContext } from "../../store/StoreProvider";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 
 const Home = () => {
@@ -16,6 +18,37 @@ const Home = () => {
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSecounds, setTimerSecounds] = useState('00')
     const [offset, setOffset] =useState()
+    const [guests, setGuests] = useState([]);
+    const history = useHistory();
+  
+    const updateList = () => {
+      const guest = history.location.pathname.substring(1);
+      let config = {
+        headers: {
+          ApiKij: process.env.apiKey,
+        },
+      };
+      axios
+        .get(
+          `https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMiłosz/${guest}`,
+          config
+        )
+        .then((response) => {
+          console.log(response);
+          setGuests(response.data);
+        })
+        .catch((error) => {
+          console.log('error');
+        });
+    };
+  
+    useEffect(() => {
+      updateList();
+    }, [history]);
+
+
+
+
 
     let wrapper = useRef(null)
     let time = useRef(null)
@@ -86,12 +119,12 @@ const Home = () => {
     }  ;
     
   return (
-    <section id="home" style={mystyle} className={style("")}>
+    <section id="home" className={style("")}>
       <div  className={style("timer")}>
         <div className={style("wrapper")}>
             <div ref={el =>{wrapper=el}}  className={style("title")}>
-          <h2 id='title'>Ślub Hani i Miłosza</h2>
-          <p id='title2'>Odliczanie do najważniejszego dnia w naszym życiu!</p>
+          <h2 id='title'>Pobieramy się!</h2>
+          <p className={style("info-text")} id='title2'>Odliczanie do dnia, w którym ślubować będziemy sobie miłość</p>
         </div>
         <div  ref={el =>{time=el}}  className={style("countdown")}>
           <section>

@@ -1,6 +1,8 @@
 const path = require("path").resolve;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const webpack = require('webpack')
+const dotenv = require('dotenv')
 
 module.exports = {
   entry: {
@@ -63,6 +65,9 @@ module.exports = {
         ],
       },
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
+   })
   ],
 };
 

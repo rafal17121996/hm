@@ -1,30 +1,23 @@
 
 export const MenuItems=[
     {
-        title: 'ODLICZANIE',
+        title: 'odliczanie',
         url: 'home',
         cName: 'nav-links'
     },
     
     {
-        title: 'DOJAZD',
+        title: 'dojazd',
         url: 'route',
         cName: 'nav-links'
     },
-
     {
-        title: 'PIOSENKI',
-        url: 'music',
-        cName: 'nav-links'
-    }
-    ,
-    {
-        title: 'KONTAKT',
+        title: 'kontakt',
         url: 'contact',
         cName: 'nav-links'
     },
     {
-        title: 'GALERIA',
+        title: 'galeria',
         url: 'gallery',
         cName: 'nav-links'
     }

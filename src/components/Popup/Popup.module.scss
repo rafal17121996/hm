@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap');
 .Popup {
+  font-family: 'Cormorant Garamond', serif;
     &__popup_background {
       position: fixed;
       top: 0;
@@ -16,7 +18,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #8b9f81;
+      background-color: #ffffff;
       padding: 50px;
       z-index: 1000;
       display: flex;
@@ -48,10 +50,10 @@
         height: 94px;
         border: none;
         padding: 10px;
-        background-color: rgb(85, 104, 75);
+        background-color: #403F41;;
         font-size: 2rem;
-        color: beige;
-        text-shadow: 1px 1px black;
+        font-weight: 100;
+        color: rgb(252, 252, 252);
         cursor: pointer;
         &:hover{
           background-color: #394633;
@@ -71,7 +73,6 @@
       // background-color: #0000002c;
     }
     p{
-      font-family: "Cormorant Garamond", serif;
       text-align: center;
       font-weight: 400;
       font-size: 1.5rem;
@@ -83,13 +84,11 @@
       }
     }
     h1{
-      font-family: "Cormorant Garamond", serif;
       text-align: center;
-      font-weight: 700;
+      font-weight: 400;
       font-size: 3.5rem;
-      color: #efb48e;
+      color: #403F41;
       line-height: 1.2em;
-      text-shadow: 1px 1px black;
       @media only screen and (max-width: 960px) {
         font-size: 2rem;
       }

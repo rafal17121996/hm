@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+
+.Wine{
+    background-color: #F7F5F1;
+    font-family: 'Cormorant Garamond', serif;
+    &__wrapper{
+        text-align: center;
+        padding-top: 200px;
+        padding-bottom: 200px;
+        h1{
+            margin-bottom: 50px;
+            font-weight: 700;
+            font-size: 4em;
+            color: #403F41;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        span{
+            margin-bottom: 10px;
+            color: #403F41;
+            font-size: 2em;
+        }
+        @media screen and (max-width: 960px) {
+            flex-direction: column;
+            transform: translateY(0);
+            }
+    }
+}
