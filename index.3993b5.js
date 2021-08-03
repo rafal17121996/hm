@@ -25415,12 +25415,16 @@ var MenuItems = [{
   url: 'home',
   cName: 'nav-links'
 }, {
-  title: 'dojazd',
+  title: 'infomacje',
   url: 'route',
   cName: 'nav-links'
 }, {
   title: 'kontakt',
   url: 'contact',
+  cName: 'nav-links'
+}, {
+  title: 'potwierdzenie',
+  url: 'gallery',
   cName: 'nav-links'
 }, {
   title: 'galeria',
@@ -25455,7 +25459,9 @@ var Navbar = () => {
       smooth: true,
       duration: 1000,
       to: item.url,
-      className: style("nav-links")
+      className: style("nav-links"),
+      onClick: () => handleOnClick(),
+      offset: isMobile ? 0 : -185
     }, item.title));
   });
   (0,react.useEffect)(() => {
@@ -25480,11 +25486,19 @@ var Navbar = () => {
     setIsOpen(prev => !prev);
   };
 
+  var handleOnClickMenu = () => {
+    console.log('dupa');
+    setIsOpen(false);
+  };
+
+  var itemStyle = isOpen ? style("nav-menu", {
+    active: true
+  }) : style("nav-menu");
   return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("nav", {
     className: style("")
   }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
     className: style("logo-wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, isMobile ? null : /*#__PURE__*/react.createElement("div", {
     className: style("logo-border")
   }, /*#__PURE__*/react.createElement("img", {
     className: style("logo"),
@@ -25498,7 +25512,7 @@ var Navbar = () => {
   }, /*#__PURE__*/react.createElement("i", {
     className: isOpen ? "fas fa-times" : "fas fa-bars"
   })), /*#__PURE__*/react.createElement("ul", {
-    className: style("nav-menu")
+    className: itemStyle
   }, Items)))));
 };
 
@@ -32612,9 +32626,9 @@ function Mapa(props) {
 var WrappedMap = (0,lib/* withScriptjs */.WS)((0,lib/* withGoogleMap */.OI)(Mapa));
 
 var Map = () => {
-  var [offset, setOffset] = (0,react.useState)();
-  var image = (0,react.useRef)(null);
-  var map = (0,react.useRef)(null);
+  var [offset, setOffset] = useState();
+  var image = useRef(null);
+  var map = useRef(null);
 
   var handleScroll = () => setOffset(window.pageYOffset);
 
@@ -32622,16 +32636,16 @@ var Map = () => {
   var mystyle = {
     backgroundPositionY: offset * 0.7 + "px"
   };
-  (0,react.useEffect)(() => {
-    gsapWithCSS.set([image, map], {
+  useEffect(() => {
+    gsap.set([image, map], {
       autoAlpha: 0
     });
-    var tl = gsapWithCSS.timeline({
+    var tl = gsap.timeline({
       defaults: {
         ease: "power3.inOut"
       }
     });
-    gsapWithCSS.fromTo(image, {
+    gsap.fromTo(image, {
       x: "-=100"
     }, {
       duration: 2,
@@ -32644,7 +32658,7 @@ var Map = () => {
         markers: false
       }
     });
-    gsapWithCSS.fromTo(map, {
+    gsap.fromTo(map, {
       y: "+=100"
     }, {
       duration: 2,
@@ -32659,44 +32673,44 @@ var Map = () => {
       }
     });
   }, []);
-  return /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     id: "route",
     className: Map_style("")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("left")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     ref: el => {
       image = el;
     },
     className: Map_style("img"),
-    src: HM,
+    src: img,
     alt: ""
-  })), /*#__PURE__*/react.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     ref: el => {
       map = el;
     },
     className: Map_style("right")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/react.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/react.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/react.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/react.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/React.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/React.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/React.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/React.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/react.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/react.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/react.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/react.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/React.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/React.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/React.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/React.createElement("div", {
     className: Map_style("map")
-  }, /*#__PURE__*/react.createElement(WrappedMap, {
+  }, /*#__PURE__*/React.createElement(WrappedMap, {
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0",
-    loadingElement: /*#__PURE__*/react.createElement("div", {
+    loadingElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    containerElement: /*#__PURE__*/react.createElement("div", {
+    containerElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    mapElement: /*#__PURE__*/react.createElement("div", {
+    mapElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
@@ -32704,7 +32718,7 @@ var Map = () => {
   }))))); //AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0
 };
 
-/* harmony default export */ const Map_Map = (Map);
+/* harmony default export */ const Map_Map = ((/* unused pure expression or super */ null && (Map)));
 ;// CONCATENATED MODULE: ./src/components/Music/Music.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Music_module = ({"Music":"Music","Music__title":"Music__title"});
@@ -32863,7 +32877,7 @@ var Gallery = () => {
 ;// CONCATENATED MODULE: ./src/assets/she1.jpg
 /* harmony default export */ const she1 = (__webpack_require__.p + "ec60a22aa28f47800521eaf6207df0c5.jpg");
 ;// CONCATENATED MODULE: ./src/assets/he1.jpg
-/* harmony default export */ const he1 = (__webpack_require__.p + "0171975fdfc95a51bbd9a1736c2c5bae.jpg");
+/* harmony default export */ const he1 = (__webpack_require__.p + "bbc4b9b17fadbe27cda13f8fa4bedb30.jpg");
 ;// CONCATENATED MODULE: ./src/components/Contact/Contact.jsx
 
 
@@ -32960,7 +32974,7 @@ var config = {
   }
 };
 
-var Popup = (_ref) => {
+var Popup_Popup = (_ref) => {
   var {
     open,
     onClose
@@ -33055,7 +33069,7 @@ var Popup = (_ref) => {
   })))), document.getElementById("portal"));
 };
 
-/* harmony default export */ const Popup_Popup = (Popup);
+/* harmony default export */ const components_Popup_Popup = (Popup_Popup);
 ;// CONCATENATED MODULE: ./src/components/Info/Info.jsx
 
 
@@ -33065,23 +33079,23 @@ var Popup = (_ref) => {
 var Info_style = (0,bem_css_modules/* default */.Z)(Info_module);
 
 var Info = () => {
-  var [isOpen, setIsOpen] = (0,react.useState)(false);
-  return /*#__PURE__*/react.createElement("div", {
+  var [isOpen, setIsOpen] = useState(false);
+  return /*#__PURE__*/React.createElement("div", {
     className: Info_style("")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Info_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Info_style("left")
-  }, /*#__PURE__*/react.createElement("h1", null, "Bierzemy \u015Alub!"), /*#__PURE__*/react.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej znajdziecie wszystkie niezb\u0119dne informacje organizacyjne oraz sekcj\u0119 \u201Epotwierdzanie obecno\u015Bci\u201D, w kt\xF3rej jednym klikni\u0119ciem zapiszecie si\u0119 na nasz \u015Blubny newsletter i powiadomicie o swoim przybyciu."), /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/React.createElement("h1", null, "Bierzemy \u015Alub!"), /*#__PURE__*/React.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej znajdziecie wszystkie niezb\u0119dne informacje organizacyjne oraz sekcj\u0119 \u201Epotwierdzanie obecno\u015Bci\u201D, w kt\xF3rej jednym klikni\u0119ciem zapiszecie si\u0119 na nasz \u015Blubny newsletter i powiadomicie o swoim przybyciu."), /*#__PURE__*/React.createElement("button", {
     onClick: () => setIsOpen(true),
     className: Info_style("btn")
-  }, "Potwierdz obecno\u015B\u0107!")), /*#__PURE__*/react.createElement(Popup_Popup, {
+  }, "Potwierdz obecno\u015B\u0107!")), /*#__PURE__*/React.createElement(Popup, {
     open: isOpen,
     onClose: () => setIsOpen(false)
   })));
 };
 
-/* harmony default export */ const Info_Info = (Info);
+/* harmony default export */ const Info_Info = ((/* unused pure expression or super */ null && (Info)));
 ;// CONCATENATED MODULE: ./src/assets/history2.jpeg
 /* harmony default export */ const history2 = (__webpack_require__.p + "e34daf2f7eb739596e33c52de26aab03.jpeg");
 // EXTERNAL MODULE: ./node_modules/read-more-react/dist/index.js
@@ -33220,7 +33234,7 @@ var Confirmation = () => {
   }, /*#__PURE__*/react.createElement("h1", null, "Hej wesele!"), /*#__PURE__*/react.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej, znajdziecie opcje potwierdzenia swojej obecno\u015Bci oraz alternatywn\u0105 \u2013 poinformowania nas, \u017Ce nie mo\u017Cecie przyby\u0107 na nasze wesele. Prosimy o informacj\u0119 do 10 wrze\u015Bnia 2021."), /*#__PURE__*/react.createElement("button", {
     onClick: () => setIsOpen(true),
     className: Confirmation_style("btn")
-  }, "Potwierdz obecno\u015B\u0107!"), /*#__PURE__*/react.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/react.createElement(Popup_Popup, {
+  }, "Potwierd\u017A obecno\u015B\u0107!"), /*#__PURE__*/react.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/react.createElement(components_Popup_Popup, {
     open: isOpen,
     onClose: () => setIsOpen(false)
   })));
@@ -34079,7 +34093,7 @@ var App = () => {
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Confirmation_Confirmation, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
   }), /*#__PURE__*/react.createElement(Route, {
     path: "/",
-    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Info_Info, null), /*#__PURE__*/react.createElement(Map_Map, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
+    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
   }))))));
 };
 
