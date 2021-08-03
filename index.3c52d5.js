@@ -25487,7 +25487,7 @@ var Navbar = () => {
   };
 
   var handleOnClickMenu = () => {
-    console.log('dupa');
+    console.log("dupa");
     setIsOpen(false);
   };
 
@@ -25496,9 +25496,9 @@ var Navbar = () => {
   }) : style("nav-menu");
   return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("nav", {
     className: style("")
-  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", null, isMobile ? null : /*#__PURE__*/react.createElement("div", {
     className: style("logo-wrapper")
-  }, isMobile ? null : /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: style("logo-border")
   }, /*#__PURE__*/react.createElement("img", {
     className: style("logo"),
