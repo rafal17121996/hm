@@ -25416,7 +25416,7 @@ var MenuItems = [{
   cName: 'nav-links'
 }, {
   title: 'infomacje',
-  url: 'route',
+  url: 'info',
   cName: 'nav-links'
 }, {
   title: 'kontakt',
@@ -25424,17 +25424,23 @@ var MenuItems = [{
   cName: 'nav-links'
 }, {
   title: 'potwierdzenie',
-  url: 'gallery',
+  url: 'confirmation',
   cName: 'nav-links'
 }, {
   title: 'galeria',
   url: 'gallery',
   cName: 'nav-links'
 }];
+;// CONCATENATED MODULE: ./src/assets/burgerMenu.svg
+/* harmony default export */ const burgerMenu = (__webpack_require__.p + "d207bcd653d8784dd584bd77835d75bb.svg");
+;// CONCATENATED MODULE: ./src/assets/close.svg
+/* harmony default export */ const assets_close = (__webpack_require__.p + "688f4b6e1c99a5d12489b53e752a05c9.svg");
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__logo-wrapper":"Navbar__logo-wrapper","Navbar__logo-border":"Navbar__logo-border","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
+/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__logo-wrapper":"Navbar__logo-wrapper","Navbar__logo-border":"Navbar__logo-border","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","Navbar__icon":"Navbar__icon","Navbar__icon-close":"Navbar__icon-close","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.jsx
+
+
 
 
 
@@ -25509,8 +25515,14 @@ var Navbar = () => {
   }, /*#__PURE__*/react.createElement("div", {
     className: style("menu-button"),
     onClick: handleOnClick
-  }, /*#__PURE__*/react.createElement("i", {
-    className: isOpen ? "fas fa-times" : "fas fa-bars"
+  }, isOpen ? /*#__PURE__*/react.createElement("img", {
+    className: style("icon-close"),
+    src: assets_close,
+    alt: ""
+  }) : /*#__PURE__*/react.createElement("img", {
+    className: style("icon"),
+    src: burgerMenu,
+    alt: ""
   })), /*#__PURE__*/react.createElement("ul", {
     className: itemStyle
   }, Items)))));
@@ -32885,13 +32897,75 @@ var Gallery = () => {
 
 
 
+
 var Contact_style = (0,bem_css_modules/* default */.Z)(Contact_module);
 
 var Contact = () => {
+  var {
+    isMobile
+  } = (0,react.useContext)(StoreProvider_StoreContext);
   return /*#__PURE__*/react.createElement("section", {
     id: "contact",
     className: Contact_style("")
+  }, isMobile ? /*#__PURE__*/react.createElement("div", {
+    className: Contact_style("wrapper")
   }, /*#__PURE__*/react.createElement("div", {
+    className: Contact_style("section")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: Contact_style("main-img"),
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
+    className: Contact_style("phone")
+  }, /*#__PURE__*/react.createElement("a", {
+    href: "tel:696-192-338"
+  }, "Tel. 696 192 338")), /*#__PURE__*/react.createElement("p", {
+    style: {
+      color: "#DC9E9D"
+    },
+    className: Contact_style("name")
+  }, "panna m\u0142oda")), /*#__PURE__*/react.createElement("div", {
+    className: Contact_style("section")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: Contact_style("main-img"),
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
+    className: Contact_style("phone")
+  }, /*#__PURE__*/react.createElement("a", {
+    href: "tel:512-514-374"
+  }, "Tel. 512 514 374")), /*#__PURE__*/react.createElement("p", {
+    style: {
+      color: "#DC9E9D"
+    },
+    className: Contact_style("name")
+  }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
+    className: Contact_style("section")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: Contact_style("second-img"),
+    src: she1
+  }), /*#__PURE__*/react.createElement("p", null, "marta orlikowska"), /*#__PURE__*/react.createElement("p", {
+    className: Contact_style("phone")
+  }, /*#__PURE__*/react.createElement("a", {
+    href: "tel:666-308-643"
+  }, "Tel. 666 308 643")), /*#__PURE__*/react.createElement("p", {
+    style: {
+      color: "#C25623"
+    },
+    className: Contact_style("name")
+  }, "\u015Bwiadkowa")), /*#__PURE__*/react.createElement("div", {
+    className: Contact_style("section")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: Contact_style("second-img"),
+    src: he1
+  }), /*#__PURE__*/react.createElement("p", null, "piotr chudy"), /*#__PURE__*/react.createElement("p", {
+    className: Contact_style("phone")
+  }, /*#__PURE__*/react.createElement("a", {
+    href: "tel:601-658-987"
+  }, "Tel. 601 658 987")), /*#__PURE__*/react.createElement("p", {
+    style: {
+      color: "#C25623"
+    },
+    className: Contact_style("name")
+  }, "\u015Bwiadek"))) : /*#__PURE__*/react.createElement("div", {
     className: Contact_style("wrapper")
   }, /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
@@ -32936,7 +33010,6 @@ var Contact = () => {
     },
     className: Contact_style("name")
   }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
-    className: Contact_style("second-img"),
     className: Contact_style("section")
   }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("second-img"),
@@ -33156,6 +33229,7 @@ var Details_style = (0,bem_css_modules/* default */.Z)(Details_module);
 var Details = () => {
   var [isOpen, setIsOpen] = (0,react.useState)(false);
   return /*#__PURE__*/react.createElement("div", {
+    id: "info",
     className: Details_style("")
   }, /*#__PURE__*/react.createElement("div", {
     style: {
@@ -33228,6 +33302,7 @@ var Confirmation_style = (0,bem_css_modules/* default */.Z)(Confirmation_module)
 var Confirmation = () => {
   var [isOpen, setIsOpen] = (0,react.useState)(false);
   return /*#__PURE__*/react.createElement("div", {
+    id: "confirmation",
     className: Confirmation_style("")
   }, /*#__PURE__*/react.createElement("div", {
     className: Confirmation_style("wrapper")
