@@ -10,7 +10,7 @@ const Confirmation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={style("")}>
+    <div id="confirmation" className={style("")}>
       <div className={style("wrapper")}>
           <h1>Hej wesele!</h1>
           <span>
@@ -20,8 +20,11 @@ const Confirmation = () => {
             o informację do 10 września 2021.
           </span>
           <button onClick={() => setIsOpen(true)} className={style("btn")}>
-            Potwierdz obecność!
+            Potwierdź obecność!
           </button>
+          <span>P.S. Jeśli nie stanowi to dla Was problemu, prosimy o podarowanie nam białego wina
+            zamiast kwiatów :)
+          </span>
         <Popup open={isOpen} onClose={() => setIsOpen(false)}></Popup>
       </div>
     </div>

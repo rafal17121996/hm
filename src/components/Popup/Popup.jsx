@@ -121,11 +121,11 @@ const Popup = ({ open, onClose }) => {
               <button onClick={() => handleStatus(3, item)}>
               Bawimy się z Wami do rana
               </button>
-              <button onClick={() => handleStatus(2, item)}>
-              Jeszcze nie wiemy
-              </button>
+              {/* <button onClick={() => handleStatus(2, item)}>
+              Jeszcze nie wiem
+              </button> */}
               <button onClick={() => handleStatus(1, item)}>
-              Niestety nas nie będzie
+              Niestety mnie nie będzie
               </button>
             </div>
           </div>

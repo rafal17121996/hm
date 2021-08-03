@@ -5,6 +5,8 @@ import img from "../../assets/219538867_411232146899970_8984585591312915675_n.pn
 
 import { MenuItems } from "./MenuItem/MenuItem";
 import { StoreContext } from "../../store/StoreProvider";
+import menu from "../../assets/burgerMenu.svg";
+import close from "../../assets/close.svg";
 
 import { default as NavbarStyles } from "./Navbar.module.scss";
 
@@ -17,24 +19,22 @@ const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
-
   const Items = MenuItems.map((item, index) => {
     return (
-      <li  key={index} className={style("nav-item")}>
+      <li key={index} className={style("nav-item")}>
         <Link
           smooth={true}
           duration={1000}
           to={item.url}
           className={style("nav-links")}
+          onClick={() => handleOnClick()}
+          offset={isMobile ? 0 : -185}
         >
           {item.title}
         </Link>
       </li>
     );
   });
-
-
-
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -57,28 +57,37 @@ const Navbar = () => {
   const handleOnClick = () => {
     setIsOpen((prev) => !prev);
   };
+  const handleOnClickMenu = () => {
+    console.log("dupa");
+    setIsOpen(false);
+  };
+
+  const itemStyle = isOpen
+    ? style("nav-menu", { active: true })
+    : style("nav-menu");
 
   return (
     <>
       <nav className={style("")}>
         <div>
-          <div className={style("logo-wrapper")}>
-            <div className={style("logo-border")}>
-              <img className={style("logo")} src={img} alt="" />
+          {isMobile ? null : (
+            <div className={style("logo-wrapper")}>
+              <div className={style("logo-border")}>
+                <img className={style("logo")} src={img} alt="" />
+              </div>
             </div>
-            
+          )}
+          <div className={style("wrapper")}>
+            <div className={style("menu-button")} onClick={handleOnClick}>
+              {isOpen ? (
+                <img className={style("icon-close")} src={close} alt="" />
+              ) : (
+                <img className={style("icon")} src={menu} alt="" />
+              )}
+            </div>
+            <ul className={itemStyle}>{Items}</ul>
           </div>
-          
-        <div className={style("wrapper")}>
-          
-          <div className={style("menu-button")} onClick={handleOnClick}>
-            <i className={isOpen ? "fas fa-times" : "fas fa-bars"}></i>
-          </div>
-          <ul className={style("nav-menu")}>{Items}</ul>
         </div>
-        </div>
-        
-       
       </nav>
     </>
   );

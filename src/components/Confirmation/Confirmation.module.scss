@@ -4,6 +4,9 @@
     min-height: 50vh;
     margin-top: 200px;
     font-family: 'Cormorant Garamond', serif;
+    background-color: #F7F5F1;
+    padding-top: 150px;
+    padding-bottom: 150px;
     @media screen and (max-width: 960px) {
         min-height: 110vh;
         }
@@ -11,18 +14,29 @@
         text-align: center;
         width: 80%;
         margin: 0 auto;
+        @media only screen and (max-width: 960px) {
+            width: 90%;
+            text-align: justify !important;
+          }
         h1{ 
-            margin-bottom: 20px;
+            margin-bottom: 60px;
             font-weight: 700;
             font-size: 4em;
             color: #403F41;
-
             font-family: 'Cormorant Garamond', serif;
+            @media only screen and (max-width: 960px) {
+                font-size: 3.5em;
+                text-align: center !important;
+              }
         }
         span{
-            margin-bottom: 20px;
+            margin-bottom: 60px;
             color: #403F41;
             font-size: 2em;
+            @media only screen and (max-width: 960px) {
+                font-size: 1.6em;
+                text-align: justify !important;
+              }
         }
         @media screen and (max-width: 960px) {
             flex-direction: column;
@@ -34,13 +48,14 @@
         display: block;
         font-family: 'Cormorant Garamond', serif;
         border: none;
-        border: solid 3px #968653;
+        border: solid 3px #BF93AD;
         margin: 35px auto;
         background-color: transparent;
         font-size: 2rem;
-        padding: 10px;
+        padding: 25px;
         cursor: pointer;
         color: #494747;
+        font-weight: 600;
         &:hover{
             color: #9b7575;
         }

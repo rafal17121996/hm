@@ -1,9 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap');
+
 .Home{
-    height: 100vh;
+    margin-top: 185px;
+    height: calc(100vh - 185px);
     position: relative;
-    z-index: 1000;
+    z-index: 997;
     background-size: cover;
     background-position-x: center;
     background-color: rgb(255, 255, 255);
@@ -44,6 +47,7 @@
         }
     }
     &__countdown{
+        font-family: 'Cormorant', serif;
         display: grid;
         grid-template-columns: repeat(7,1fr);
         margin-top: 3em;

@@ -7,13 +7,18 @@ export const MenuItems=[
     },
     
     {
-        title: 'dojazd',
-        url: 'route',
+        title: 'infomacje',
+        url: 'info',
         cName: 'nav-links'
     },
     {
         title: 'kontakt',
         url: 'contact',
+        cName: 'nav-links'
+    },
+    {
+        title: 'potwierdzenie',
+        url: 'confirmation',
         cName: 'nav-links'
     },
     {

@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import StoreProvider, { StoreContext } from "./store/StoreProvider";
+import { Provider } from 'react-redux';
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -16,6 +17,8 @@ import History from "./components/History/History";
 import Details from "./components/Details/Details";
 import Confirmation from "./components/Confirmation/Confirmation";
 import Wine from "./components/Wine/Wine";
+
+import store from './store/store';
 
 //const Navbar = lazy(() => import('./components/Navbar/Navbar'))
 
@@ -41,6 +44,7 @@ const App = () => {
     </div>
   ) : (
     <Router>
+      <Provider store={store}>
       <StoreProvider>
         <Suspense fallback={<div style={{ height: "100vh" }}>Loading...</div>}>
           <Switch>
@@ -54,7 +58,7 @@ const App = () => {
                   <Details />
                   <Contact /> 
                   <Confirmation />
-                  <Wine />
+                  {/* <Wine /> */}
                   <Gallery />
                 </>
               )}
@@ -65,12 +69,10 @@ const App = () => {
                 <>
                   <Navbar />
                   <Home />
-                  <Info />
-                  <Map />
-
-                  {/* <History />
-                  <Music /> */}
-                  <Contact />
+                  <Details />
+                  <Contact /> 
+                  {/* <Confirmation /> */}
+                  {/* <Wine /> */}
                   <Gallery />
                 </>
               )}
@@ -78,6 +80,7 @@ const App = () => {
           </Switch>
         </Suspense>
       </StoreProvider>
+      </Provider>
     </Router>
   );
 };
