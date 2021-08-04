@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import bemCssModules from "bem-css-modules";
 import { Link } from "react-scroll";
-import img from "../../assets/219538867_411232146899970_8984585591312915675_n.png";
+// import img from "../../assets/219538867_411232146899970_8984585591312915675_n.png";
+import img from "../../assets/logo.png";
 
 import { MenuItems } from "./MenuItem/MenuItem";
 import { StoreContext } from "../../store/StoreProvider";
@@ -85,7 +86,10 @@ const Navbar = () => {
                 <img className={style("icon")} src={menu} alt="" />
               )}
             </div>
-            <ul className={itemStyle}>{Items}</ul>
+            <ul className={itemStyle}>
+              {isMobile? <li><img className={style("nav-logo")} src={img} alt="" /></li>:null}
+              {Items}
+              </ul>
           </div>
         </div>
       </nav>

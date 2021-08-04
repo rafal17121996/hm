@@ -1,6 +1,8 @@
 import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import StoreProvider, { StoreContext } from "./store/StoreProvider";
 import { Provider } from 'react-redux';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -21,6 +23,18 @@ import Wine from "./components/Wine/Wine";
 import store from './store/store';
 
 //const Navbar = lazy(() => import('./components/Navbar/Navbar'))
+
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE,
+  containerStyle: {
+    zIndex: 1000
+  }
+}
 
 const App = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -43,6 +57,7 @@ const App = () => {
       <i className="fas fa-sync-alt"></i> <p>Obróć swoje urządzenie</p>
     </div>
   ) : (
+    <AlertProvider template={AlertTemplate} {...options}>
     <Router>
       <Provider store={store}>
       <StoreProvider>
@@ -82,6 +97,7 @@ const App = () => {
       </StoreProvider>
       </Provider>
     </Router>
+    </AlertProvider>
   );
 };
 export default App;

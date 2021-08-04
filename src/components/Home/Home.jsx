@@ -126,6 +126,7 @@ const Home = () => {
           <h2 id='title'>Pobieramy się!</h2>
           <p className={style("info-text")} id='title2'>Odliczanie do dnia, w którym ślubować będziemy sobie miłość</p>
         </div>
+        </div>
         <div  ref={el =>{time=el}}  className={style("countdown")}>
           <section>
             <p>{timerDays}</p>
@@ -155,8 +156,6 @@ const Home = () => {
             </p>
           </section>
         </div>
-        </div>
-      
       </div>
     </section>
   );

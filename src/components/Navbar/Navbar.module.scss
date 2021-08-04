@@ -65,6 +65,9 @@ $base-color: antiquewhite;
   &__nav-item {
     height: 80px;
   }
+  &__nav-logo {
+    width: 80%;
+  }
   &__nav-links {
     color: #403F41;
     display: flex;
@@ -98,7 +101,7 @@ $base-color: antiquewhite;
       transition: all 0.5s ease;
     }
     &__nav-menu_active {
-      background: #555353;
+      background: #cccbcb;
       left: 0;
       opacity: 1;
       transition: all 0.5s ease;
@@ -109,7 +112,7 @@ $base-color: antiquewhite;
       padding: 2rem;
       width: 100%;
       display: table;
-      color: #c2c2c2
+      color: #434242
     }
     &__nav-links:hover {
       background-color: #fff;

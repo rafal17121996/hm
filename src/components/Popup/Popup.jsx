@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import bemCssModules from "bem-css-modules";
+import { useAlert } from 'react-alert'
 
 import { default as PopupStyles } from "./Popup.module.scss";
 import axios from "axios";
@@ -19,12 +20,13 @@ const Popup = ({ open, onClose }) => {
 
   const [guests, setGuests] = useState([]);
   const [guests2, setGuests2] = useState([]);
+  const alert = useAlert()
+
 
   const history = useHistory();
 
   const updateList = () => {
     const guest = history.location.pathname.substring(1);
-
     axios
       .get(
         `https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMiłosz/${guest}`,
@@ -34,7 +36,7 @@ const Popup = ({ open, onClose }) => {
         if (response.status == 200) {
           setGuests(response.data);
         } else {
-          alert("Coś poszło nie tak")
+          // alert.show('Coś poszło nie tak')
         }
       })
       .catch((error) => {
@@ -62,7 +64,7 @@ const Popup = ({ open, onClose }) => {
   const handleStatus = (number, item) => {
     let config = {
       headers: {
-        ApiKij: "12nfhfkjaha983ZKsakjh12989S11",
+        ApiKij: process.env.apiKe,
       },
     };
 
@@ -86,7 +88,7 @@ const Popup = ({ open, onClose }) => {
       .then((response) => {
         console.log(response.status);
         if (response.status == 200) {
-          alert('Dziękujemy za informację')
+          alert.show('Dziękujemy za informację')
           let newArray = [...guests]  ;
           newArray[0].decisionStatus = number
           console.log(newArray)
@@ -95,7 +97,7 @@ const Popup = ({ open, onClose }) => {
             newArray
           )
         } else {
-          alert("Coś poszło nie tak")
+          alert.show('Coś poszło nie tak :(')
         }
       })
       .catch((error) => {

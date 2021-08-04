@@ -11,14 +11,22 @@
     background-position-x: center;
     background-color: rgb(255, 255, 255);
     font-family: 'Cormorant Garamond', serif;
-    @media screen and (min-width: 960px) {
-    animation-name: zoom;
-    animation-duration: 5s;
+    @media screen and (max-width: 960px) {
+        height: 100vh;
+        margin-top: 0px;
     }
  
     &__info-text{
         color: #403F41;
         font-size: 2em;
+        @media screen and (max-width: 960px) {
+            font-size: 1.7em;
+            text-align: justify;
+            width: 80%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     &__timer{
         display: flex;
@@ -30,10 +38,8 @@
     }
 
     &__wrapper{
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
         z-index: 100;
+
     }
 
     &__title{
@@ -44,6 +50,10 @@
             margin-bottom: 0.5em;
             color: #403F41;
             font-family: 'Cormorant Garamond', serif;
+            @media screen and (max-width: 960px) {
+                font-size: 3em;
+                margin-bottom: 0.7em;
+            }
         }
     }
     &__countdown{
@@ -56,6 +66,9 @@
         span, p:first-child{
             font-size: 3.7em;
             color: #403F41;
+            @media screen and (max-width: 960px) {
+                font-size: 3.3em;
+            }
         }
     }
 
