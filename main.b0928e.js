@@ -18786,7 +18786,7 @@ var __webpack_unused_export__;
 __webpack_unused_export__ = ({
   value: true
 });
-__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = exports.rU = undefined;
+__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = undefined;
 
 var _Link = __webpack_require__(8939);
 
@@ -18830,7 +18830,7 @@ var _Helpers2 = _interopRequireDefault(_Helpers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.rU = _Link2.default;
+__webpack_unused_export__ = _Link2.default;
 __webpack_unused_export__ = _Button2.default;
 __webpack_unused_export__ = _Element2.default;
 __webpack_unused_export__ = _scroller2.default;
@@ -22143,26 +22143,11 @@ var prop_types = __webpack_require__(5697);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/components/Context.js
 
-var Context_ReactReduxContext = /*#__PURE__*/react.createContext(null);
+var Context_ReactReduxContext = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createContext(null)));
 
 if (false) {}
 
 /* harmony default export */ const Context = ((/* unused pure expression or super */ null && (Context_ReactReduxContext)));
-;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/batch.js
-// Default to a dummy "batch" implementation that just runs the callback
-function defaultNoopBatch(callback) {
-  callback();
-}
-
-var batch = defaultNoopBatch; // Allow injecting another batching function later
-
-var setBatch = function setBatch(newBatch) {
-  return batch = newBatch;
-}; // Supply a getter just to skip dealing with ESM bindings
-
-var getBatch = function getBatch() {
-  return batch;
-};
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/Subscription.js
  // encapsulates the subscription logic for connecting a component to the redux store, as
 // well as nesting subscriptions of descendant components, so that we can ensure the
@@ -22236,7 +22221,7 @@ function createListenerCollection() {
   };
 }
 
-var Subscription_Subscription = /*#__PURE__*/function () {
+var Subscription_Subscription = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   function Subscription(store, parentSub) {
     this.store = store;
     this.parentSub = parentSub;
@@ -22283,7 +22268,7 @@ var Subscription_Subscription = /*#__PURE__*/function () {
   };
 
   return Subscription;
-}();
+}()));
 
 
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js
@@ -22308,18 +22293,18 @@ function Provider(_ref) {
   var store = _ref.store,
       context = _ref.context,
       children = _ref.children;
-  var contextValue = (0,react.useMemo)(function () {
-    var subscription = new Subscription_Subscription(store);
+  var contextValue = useMemo(function () {
+    var subscription = new Subscription(store);
     subscription.onStateChange = subscription.notifyNestedSubs;
     return {
       store: store,
       subscription: subscription
     };
   }, [store]);
-  var previousState = (0,react.useMemo)(function () {
+  var previousState = useMemo(function () {
     return store.getState();
   }, [store]);
-  useIsomorphicLayoutEffect_useIsomorphicLayoutEffect(function () {
+  useIsomorphicLayoutEffect(function () {
     var subscription = contextValue.subscription;
     subscription.trySubscribe();
 
@@ -22332,15 +22317,15 @@ function Provider(_ref) {
       subscription.onStateChange = null;
     };
   }, [contextValue, previousState]);
-  var Context = context || Context_ReactReduxContext;
-  return /*#__PURE__*/react.createElement(Context.Provider, {
+  var Context = context || ReactReduxContext;
+  return /*#__PURE__*/React.createElement(Context.Provider, {
     value: contextValue
   }, children);
 }
 
 if (false) {}
 
-/* harmony default export */ const components_Provider = (Provider);
+/* harmony default export */ const components_Provider = ((/* unused pure expression or super */ null && (Provider)));
 // EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
 var hoist_non_react_statics_cjs = __webpack_require__(8679);
 // EXTERNAL MODULE: ./node_modules/react-is/index.js
@@ -23223,6 +23208,21 @@ function createSelectorHook(context) {
  */
 
 var useSelector = /*#__PURE__*/(/* unused pure expression or super */ null && (createSelectorHook()));
+;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/batch.js
+// Default to a dummy "batch" implementation that just runs the callback
+function defaultNoopBatch(callback) {
+  callback();
+}
+
+var batch = (/* unused pure expression or super */ null && (defaultNoopBatch)); // Allow injecting another batching function later
+
+var setBatch = function setBatch(newBatch) {
+  return batch = newBatch;
+}; // Supply a getter just to skip dealing with ESM bindings
+
+var batch_getBatch = function getBatch() {
+  return batch;
+};
 ;// CONCATENATED MODULE: ./node_modules/react-redux/es/utils/reactBatchedUpdates.js
 /* eslint-disable import/no-unresolved */
 
@@ -24485,9 +24485,9 @@ react_alert_Provider.defaultProps = {
   context: react_alert_Context
 };
 
-var useAlert = function useAlert(Context$1) {
-  var alertContext = (0,react.useContext)(Context$1 || react_alert_Context);
-  var alert = (0,react.useMemo)(function () {
+var react_alert_useAlert = function useAlert(Context$1) {
+  var alertContext = useContext(Context$1 || react_alert_Context);
+  var alert = useMemo(function () {
     return alertContext.current;
   }, [alertContext]);
   return alert;
@@ -26467,7 +26467,7 @@ function withRouter(Component) {
 }
 
 var react_router_useContext = react.useContext;
-function useHistory() {
+function react_router_useHistory() {
   if (false) {}
 
   return react_router_useContext(historyContext);
@@ -26645,7 +26645,7 @@ if (false) {}
  */
 
 
-var Link = forwardRef(function (_ref2, forwardedRef) {
+var react_router_dom_Link = forwardRef(function (_ref2, forwardedRef) {
   var _ref2$component = _ref2.component,
       component = _ref2$component === void 0 ? LinkAnchor : _ref2$component,
       replace = _ref2.replace,
@@ -26753,7 +26753,7 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
       props.innerRef = innerRef;
     }
 
-    return react.createElement(Link, props);
+    return react.createElement(react_router_dom_Link, props);
   });
 });
 
@@ -26769,7 +26769,7 @@ var modules = __webpack_require__(6261);
 ;// CONCATENATED MODULE: ./src/assets/logo.png
 /* harmony default export */ const logo = (__webpack_require__.p + "789983935077224e338f414863d07cf9.png");
 ;// CONCATENATED MODULE: ./src/components/Navbar/MenuItem/MenuItem.jsx
-var MenuItems = [{
+var MenuItem_MenuItems = [{
   title: 'odliczanie',
   url: 'home',
   cName: 'nav-links'
@@ -26813,15 +26813,15 @@ var style = (0,bem_css_modules/* default */.Z)(Navbar_module);
 var Navbar = () => {
   var {
     isMobile
-  } = (0,react.useContext)(StoreProvider_StoreContext);
-  var [prevScrollpos, setPrevScrollpos] = (0,react.useState)(window.pageYOffset);
-  var [visible, setVisible] = (0,react.useState)(true);
-  var [isOpen, setIsOpen] = (0,react.useState)(false);
+  } = useContext(StoreContext);
+  var [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
+  var [visible, setVisible] = useState(true);
+  var [isOpen, setIsOpen] = useState(false);
   var Items = MenuItems.map((item, index) => {
-    return /*#__PURE__*/react.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       key: index,
       className: style("nav-item")
-    }, /*#__PURE__*/react.createElement(modules/* Link */.rU, {
+    }, /*#__PURE__*/React.createElement(Link, {
       smooth: true,
       duration: 1000,
       to: item.url,
@@ -26830,7 +26830,7 @@ var Navbar = () => {
       offset: isMobile ? 0 : -185
     }, item.title));
   });
-  (0,react.useEffect)(() => {
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -26860,39 +26860,39 @@ var Navbar = () => {
   var itemStyle = isOpen ? style("nav-menu", {
     active: true
   }) : style("nav-menu");
-  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("nav", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
     className: style("")
-  }, /*#__PURE__*/react.createElement("div", null, isMobile ? null : /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, isMobile ? null : /*#__PURE__*/React.createElement("div", {
     className: style("logo-wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: style("logo-border")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: style("logo"),
-    src: logo,
+    src: img,
     alt: ""
-  }))), /*#__PURE__*/react.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
     className: style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: style("menu-button"),
     onClick: handleOnClick
-  }, isOpen ? /*#__PURE__*/react.createElement("img", {
+  }, isOpen ? /*#__PURE__*/React.createElement("img", {
     className: style("icon-close"),
-    src: assets_close,
+    src: close,
     alt: ""
-  }) : /*#__PURE__*/react.createElement("img", {
+  }) : /*#__PURE__*/React.createElement("img", {
     className: style("icon"),
-    src: burgerMenu,
+    src: menu,
     alt: ""
-  })), /*#__PURE__*/react.createElement("ul", {
+  })), /*#__PURE__*/React.createElement("ul", {
     className: itemStyle
-  }, isMobile ? /*#__PURE__*/react.createElement("li", null, /*#__PURE__*/react.createElement("img", {
+  }, isMobile ? /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("img", {
     className: style("nav-logo"),
-    src: logo,
+    src: img,
     alt: ""
   })) : null, Items)))));
 };
 
-/* harmony default export */ const Navbar_Navbar = (Navbar);
+/* harmony default export */ const Navbar_Navbar = ((/* unused pure expression or super */ null && (Navbar)));
 ;// CONCATENATED MODULE: ./node_modules/gsap/gsap-core.js
 function gsap_core_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
@@ -32155,7 +32155,7 @@ var Home_Home = () => {
   var [timerSecounds, setTimerSecounds] = (0,react.useState)('00');
   var [offset, setOffset] = (0,react.useState)();
   var [guests, setGuests] = (0,react.useState)([]);
-  var history = useHistory();
+  var history = react_router_useHistory();
 
   var updateList = () => {
     var guest = history.location.pathname.substring(1);
@@ -34002,9 +34002,9 @@ function Mapa(props) {
 var WrappedMap = (0,lib/* withScriptjs */.WS)((0,lib/* withGoogleMap */.OI)(Mapa));
 
 var Map = () => {
-  var [offset, setOffset] = useState();
-  var image = useRef(null);
-  var map = useRef(null);
+  var [offset, setOffset] = (0,react.useState)();
+  var image = (0,react.useRef)(null);
+  var map = (0,react.useRef)(null);
 
   var handleScroll = () => setOffset(window.pageYOffset);
 
@@ -34012,16 +34012,16 @@ var Map = () => {
   var mystyle = {
     backgroundPositionY: offset * 0.7 + "px"
   };
-  useEffect(() => {
-    gsap.set([image, map], {
+  (0,react.useEffect)(() => {
+    gsapWithCSS.set([image, map], {
       autoAlpha: 0
     });
-    var tl = gsap.timeline({
+    var tl = gsapWithCSS.timeline({
       defaults: {
         ease: "power3.inOut"
       }
     });
-    gsap.fromTo(image, {
+    gsapWithCSS.fromTo(image, {
       x: "-=100"
     }, {
       duration: 2,
@@ -34034,7 +34034,7 @@ var Map = () => {
         markers: false
       }
     });
-    gsap.fromTo(map, {
+    gsapWithCSS.fromTo(map, {
       y: "+=100"
     }, {
       duration: 2,
@@ -34049,44 +34049,44 @@ var Map = () => {
       }
     });
   }, []);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react.createElement("div", {
     id: "route",
     className: Map_style("")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Map_style("wrapper")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Map_style("left")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     ref: el => {
       image = el;
     },
     className: Map_style("img"),
-    src: img,
+    src: HM,
     alt: ""
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react.createElement("div", {
     ref: el => {
       map = el;
     },
     className: Map_style("right")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/React.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/React.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/React.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/React.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/react.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/react.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/react.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/react.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/React.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/React.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/React.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/React.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/react.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/react.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/react.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/react.createElement("div", {
     className: Map_style("map")
-  }, /*#__PURE__*/React.createElement(WrappedMap, {
+  }, /*#__PURE__*/react.createElement(WrappedMap, {
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0",
-    loadingElement: /*#__PURE__*/React.createElement("div", {
+    loadingElement: /*#__PURE__*/react.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    containerElement: /*#__PURE__*/React.createElement("div", {
+    containerElement: /*#__PURE__*/react.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    mapElement: /*#__PURE__*/React.createElement("div", {
+    mapElement: /*#__PURE__*/react.createElement("div", {
       style: {
         height: "100%"
       }
@@ -34094,7 +34094,7 @@ var Map = () => {
   }))))); //AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0
 };
 
-/* harmony default export */ const Map_Map = ((/* unused pure expression or super */ null && (Map)));
+/* harmony default export */ const Map_Map = (Map);
 ;// CONCATENATED MODULE: ./src/components/Music/Music.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Music_module = ({"Music":"Music","Music__title":"Music__title"});
@@ -34236,15 +34236,15 @@ var Photos = () => {
 var Gallery_style = (0,bem_css_modules/* default */.Z)(Gallery_module);
 
 var Gallery = () => {
-  return /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     id: "gallery",
     className: Gallery_style('')
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     src: "https://img.icons8.com/carbon-copy/100/000000/camera--v1.png"
-  }), /*#__PURE__*/react.createElement("h2", null, "Zajrzyjcie tu tak\u017Ce po \u015Blubie"), /*#__PURE__*/react.createElement("p", null, "Gdy tylko otrzymamy zdj\u0119cia i film z uroczysto\u015Bci umie\u015Bcimy je na stronie, dzi\u0119ki czemu b\u0119dziecie mieli mo\u017Cliwo\u015B\u0107 obejrze\u0107 je oraz pobra\u0107."));
+  }), /*#__PURE__*/React.createElement("h2", null, "Zajrzyjcie tu tak\u017Ce po \u015Blubie"), /*#__PURE__*/React.createElement("p", null, "Gdy tylko otrzymamy zdj\u0119cia i film z uroczysto\u015Bci umie\u015Bcimy je na stronie, dzi\u0119ki czemu b\u0119dziecie mieli mo\u017Cliwo\u015B\u0107 obejrze\u0107 je oraz pobra\u0107."));
 };
 
-/* harmony default export */ const Gallery_Gallery = (Gallery);
+/* harmony default export */ const Gallery_Gallery = ((/* unused pure expression or super */ null && (Gallery)));
 ;// CONCATENATED MODULE: ./src/components/Contact/Contact.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Contact_module = ({"Contact":"Contact","Contact__wrapper":"Contact__wrapper","Contact__section":"Contact__section","Contact__main-img":"Contact__main-img","Contact__second-img":"Contact__second-img","Contact__name":"Contact__name","Contact__phone":"Contact__phone"});
@@ -34267,122 +34267,122 @@ var Contact_style = (0,bem_css_modules/* default */.Z)(Contact_module);
 var Contact = () => {
   var {
     isMobile
-  } = (0,react.useContext)(StoreProvider_StoreContext);
-  return /*#__PURE__*/react.createElement("section", {
+  } = useContext(StoreContext);
+  return /*#__PURE__*/React.createElement("section", {
     id: "contact",
     className: Contact_style("")
-  }, isMobile ? /*#__PURE__*/react.createElement("div", {
+  }, isMobile ? /*#__PURE__*/React.createElement("div", {
     className: Contact_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
-  }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
+    src: img
+  }), /*#__PURE__*/React.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:696-192-338"
-  }, "Tel. 696 192 338")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 696 192 338")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "panna m\u0142oda")), /*#__PURE__*/react.createElement("div", {
+  }, "panna m\u0142oda")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
-  }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
+    src: img
+  }), /*#__PURE__*/React.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:512-514-374"
-  }, "Tel. 512 514 374")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 512 514 374")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
+  }, "pan m\u0142ody")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("second-img"),
-    src: she1
-  }), /*#__PURE__*/react.createElement("p", null, "marta orlikowska"), /*#__PURE__*/react.createElement("p", {
+    src: img1
+  }), /*#__PURE__*/React.createElement("p", null, "marta orlikowska"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:666-308-643"
-  }, "Tel. 666 308 643")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 666 308 643")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadkowa")), /*#__PURE__*/react.createElement("div", {
+  }, "\u015Bwiadkowa")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("second-img"),
-    src: he1
-  }), /*#__PURE__*/react.createElement("p", null, "piotr chudy"), /*#__PURE__*/react.createElement("p", {
+    src: img4
+  }), /*#__PURE__*/React.createElement("p", null, "piotr chudy"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:601-658-987"
-  }, "Tel. 601 658 987")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 601 658 987")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadek"))) : /*#__PURE__*/react.createElement("div", {
+  }, "\u015Bwiadek"))) : /*#__PURE__*/React.createElement("div", {
     className: Contact_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("second-img"),
-    src: she1
-  }), /*#__PURE__*/react.createElement("p", null, "marta orlikowska"), /*#__PURE__*/react.createElement("p", {
+    src: img1
+  }), /*#__PURE__*/React.createElement("p", null, "marta orlikowska"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:666-308-643"
-  }, "Tel. 666 308 643")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 666 308 643")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadkowa")), /*#__PURE__*/react.createElement("div", {
+  }, "\u015Bwiadkowa")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
-  }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
+    src: img
+  }), /*#__PURE__*/React.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:696-192-338"
-  }, "Tel. 696 192 338")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 696 192 338")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "panna m\u0142oda")), /*#__PURE__*/react.createElement("div", {
+  }, "panna m\u0142oda")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
-  }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
+    src: img
+  }), /*#__PURE__*/React.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:512-514-374"
-  }, "Tel. 512 514 374")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 512 514 374")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
+  }, "pan m\u0142ody")), /*#__PURE__*/React.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: Contact_style("second-img"),
-    src: he1
-  }), /*#__PURE__*/react.createElement("p", null, "piotr chudy"), /*#__PURE__*/react.createElement("p", {
+    src: img4
+  }), /*#__PURE__*/React.createElement("p", null, "piotr chudy"), /*#__PURE__*/React.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/react.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "tel:601-658-987"
-  }, "Tel. 601 658 987")), /*#__PURE__*/react.createElement("p", {
+  }, "Tel. 601 658 987")), /*#__PURE__*/React.createElement("p", {
     style: {
       color: "#C25623"
     },
@@ -34390,7 +34390,7 @@ var Contact = () => {
   }, "\u015Bwiadek"))));
 };
 
-/* harmony default export */ const Contact_Contact = (Contact);
+/* harmony default export */ const Contact_Contact = ((/* unused pure expression or super */ null && (Contact)));
 ;// CONCATENATED MODULE: ./src/components/Info/Info.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Info_module = ({"Info":"Info","Info__wrapper":"Info__wrapper","Info__left":"Info__left","Info__wave":"Info__wave","Info__btn":"Info__btn"});
@@ -34418,14 +34418,14 @@ var Popup_Popup = (_ref) => {
     onClose
   } = _ref;
   if (!open) return null;
-  var [guests, setGuests] = (0,react.useState)([]);
-  var [guests2, setGuests2] = (0,react.useState)([]);
+  var [guests, setGuests] = useState([]);
+  var [guests2, setGuests2] = useState([]);
   var alert = useAlert();
   var history = useHistory();
 
   var updateList = () => {
     var guest = history.location.pathname.substring(1);
-    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
+    axios.get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
       if (response.status == 200) {
         setGuests(response.data);
       } else {// alert.show('Coś poszło nie tak')
@@ -34435,7 +34435,7 @@ var Popup_Popup = (_ref) => {
     });
   };
 
-  (0,react.useEffect)(() => {
+  useEffect(() => {
     updateList();
   }, []);
 
@@ -34445,7 +34445,7 @@ var Popup_Popup = (_ref) => {
     }
   };
 
-  (0,react.useEffect)(() => {
+  useEffect(() => {
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
@@ -34465,7 +34465,7 @@ var Popup_Popup = (_ref) => {
         decisionStatus: number
       }]
     };
-    axios_default().post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
+    axios.post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
       console.log(response.status);
 
       if (response.status == 200) {
@@ -34483,31 +34483,31 @@ var Popup_Popup = (_ref) => {
     });
   };
 
-  return /*#__PURE__*/react_dom.createPortal( /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/ReactDom.createPortal( /*#__PURE__*/React.createElement("div", {
     className: Popup_style("")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Popup_style("popup_background")
-  }), /*#__PURE__*/react.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: Popup_style("popup")
-  }, guests.map(item => /*#__PURE__*/react.createElement("div", {
+  }, guests.map(item => /*#__PURE__*/React.createElement("div", {
     className: Popup_style("guest"),
     key: item.firstName
-  }, /*#__PURE__*/react.createElement("h1", null, item.firstName, " ", item.lastName), /*#__PURE__*/react.createElement("p", null, "Status:", " ", item.decisionStatus == 0 ? "Nieokreślony" : null, item.decisionStatus == 1 ? "Brak obecności" : null, item.decisionStatus == 2 ? "Niezdecydowany" : null, item.decisionStatus == 3 ? "Potwierdzony" : null), /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h1", null, item.firstName, " ", item.lastName), /*#__PURE__*/React.createElement("p", null, "Status:", " ", item.decisionStatus == 0 ? "Nieokreślony" : null, item.decisionStatus == 1 ? "Brak obecności" : null, item.decisionStatus == 2 ? "Niezdecydowany" : null, item.decisionStatus == 3 ? "Potwierdzony" : null), /*#__PURE__*/React.createElement("div", {
     className: Popup_style("btnWrapper")
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/React.createElement("button", {
     onClick: () => handleStatus(3, item)
-  }, "Bawimy si\u0119 z Wami do rana"), /*#__PURE__*/react.createElement("button", {
+  }, "Bawimy si\u0119 z Wami do rana"), /*#__PURE__*/React.createElement("button", {
     onClick: () => handleStatus(1, item)
-  }, "Niestety mnie nie b\u0119dzie")))), /*#__PURE__*/react.createElement("div", {
+  }, "Niestety mnie nie b\u0119dzie")))), /*#__PURE__*/React.createElement("div", {
     onClick: () => onClose(),
     className: Popup_style("close")
-  }, /*#__PURE__*/react.createElement("i", {
+  }, /*#__PURE__*/React.createElement("i", {
     onClick: () => onClose(),
     className: "fas fa-times"
   })))), document.getElementById("portal"));
 };
 
-/* harmony default export */ const components_Popup_Popup = (Popup_Popup);
+/* harmony default export */ const components_Popup_Popup = ((/* unused pure expression or super */ null && (Popup_Popup)));
 ;// CONCATENATED MODULE: ./src/components/Info/Info.jsx
 
 
@@ -34665,22 +34665,22 @@ var Details = () => {
 var Confirmation_style = (0,bem_css_modules/* default */.Z)(Confirmation_module);
 
 var Confirmation = () => {
-  var [isOpen, setIsOpen] = (0,react.useState)(false);
-  return /*#__PURE__*/react.createElement("div", {
+  var [isOpen, setIsOpen] = useState(false);
+  return /*#__PURE__*/React.createElement("div", {
     id: "confirmation",
     className: Confirmation_style("")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Confirmation_style("wrapper")
-  }, /*#__PURE__*/react.createElement("h1", null, "Hej wesele!"), /*#__PURE__*/react.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej, znajdziecie opcje potwierdzenia swojej obecno\u015Bci oraz alternatywn\u0105 \u2013 poinformowania nas, \u017Ce nie mo\u017Cecie przyby\u0107 na nasze wesele. Prosimy o informacj\u0119 do 10 wrze\u015Bnia 2021."), /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/React.createElement("h1", null, "Hej wesele!"), /*#__PURE__*/React.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej, znajdziecie opcje potwierdzenia swojej obecno\u015Bci oraz alternatywn\u0105 \u2013 poinformowania nas, \u017Ce nie mo\u017Cecie przyby\u0107 na nasze wesele. Prosimy o informacj\u0119 do 10 wrze\u015Bnia 2021."), /*#__PURE__*/React.createElement("button", {
     onClick: () => setIsOpen(true),
     className: Confirmation_style("btn")
-  }, "Potwierd\u017A obecno\u015B\u0107!"), /*#__PURE__*/react.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/react.createElement(components_Popup_Popup, {
+  }, "Potwierd\u017A obecno\u015B\u0107!"), /*#__PURE__*/React.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/React.createElement(Popup, {
     open: isOpen,
     onClose: () => setIsOpen(false)
   })));
 };
 
-/* harmony default export */ const Confirmation_Confirmation = (Confirmation);
+/* harmony default export */ const Confirmation_Confirmation = ((/* unused pure expression or super */ null && (Confirmation)));
 ;// CONCATENATED MODULE: ./src/components/Wine/Wine.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Wine_module = ({"Wine":"Wine","Wine__wrapper":"Wine__wrapper"});
@@ -35478,7 +35478,7 @@ var rootReducer = combineReducers({
 
 
 var store = createStore(rootReducer, applyMiddleware(validateAuthorMiddleware));
-/* harmony default export */ const store_store = (store);
+/* harmony default export */ const store_store = ((/* unused pure expression or super */ null && (store)));
 ;// CONCATENATED MODULE: ./src/App.jsx
 function App_extends() { App_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return App_extends.apply(this, arguments); }
 
@@ -35535,41 +35535,58 @@ var App = () => {
     className: "overlay"
   }, /*#__PURE__*/react.createElement("i", {
     className: "fas fa-sync-alt"
-  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
-    template: react_alert_template_basic
-  }, options), /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(components_Provider, {
-    store: store_store
-  }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(react.Suspense, {
-    fallback: /*#__PURE__*/react.createElement("div", {
-      style: {
-        height: "100vh"
-      }
-    }, "Loading...")
-  }, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
-    exact: true,
-    path: "/:item",
-    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Confirmation_Confirmation, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  }), /*#__PURE__*/react.createElement(Route, {
-    path: "/",
-    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  }))))))) // <AlertProvider template={AlertTemplate} {...options}>
+  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) :
+  /*#__PURE__*/
+  // <AlertProvider template={AlertTemplate} {...options}>
+  // <Router>
+  //   <Provider store={store}>
   //   <StoreProvider>
-  //   <Router>
-  //     <Switch>
-  //       <Route path="/about">
-  //         <Details />
-  //       </Route>
-  //       <Route path="/topics">
-  //         <Map />
-  //       </Route>
-  //       <Route path="/">
-  //         <Home />
-  //       </Route>
-  //     </Switch>
-  // </Router>
+  //     <Suspense fallback={<div style={{ height: "100vh" }}>Loading...</div>}>
+  //       <Switch>
+  //         <Route
+  //           exact
+  //           path="/:item"
+  //           render={() => (
+  //             <>
+  //               <Navbar />
+  //               <Home />
+  //               <Details />
+  //               <Contact />
+  //               <Confirmation />
+  //               {/* <Wine /> */}
+  //               <Gallery />
+  //             </>
+  //           )}
+  //         />
+  //         <Route
+  //           path="/"
+  //           render={() => (
+  //             <>
+  //               <Navbar />
+  //               <Home />
+  //               <Details />
+  //               <Contact />
+  //               {/* <Confirmation /> */}
+  //               {/* <Wine /> */}
+  //               <Gallery />
+  //             </>
+  //           )}
+  //         />
+  //       </Switch>
+  //     </Suspense>
   //   </StoreProvider>
+  //   </Provider>
+  // </Router>
   // </AlertProvider>
-  ;
+  react.createElement(react_alert_Provider, App_extends({
+    template: react_alert_template_basic
+  }, options), /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
+    path: "/about"
+  }, /*#__PURE__*/react.createElement(Details_Details, null)), /*#__PURE__*/react.createElement(Route, {
+    path: "/topics"
+  }, /*#__PURE__*/react.createElement(Map_Map, null)), /*#__PURE__*/react.createElement(Route, {
+    path: "/"
+  }, /*#__PURE__*/react.createElement(components_Home_Home, null))))));
 };
 
 /* harmony default export */ const src_App = (App);
