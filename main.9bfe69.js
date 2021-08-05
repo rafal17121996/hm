@@ -18786,7 +18786,7 @@ var __webpack_unused_export__;
 __webpack_unused_export__ = ({
   value: true
 });
-__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = undefined;
+__webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = __webpack_unused_export__ = exports.rU = undefined;
 
 var _Link = __webpack_require__(8939);
 
@@ -18830,7 +18830,7 @@ var _Helpers2 = _interopRequireDefault(_Helpers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_unused_export__ = _Link2.default;
+exports.rU = _Link2.default;
 __webpack_unused_export__ = _Button2.default;
 __webpack_unused_export__ = _Element2.default;
 __webpack_unused_export__ = _scroller2.default;
@@ -24485,9 +24485,9 @@ react_alert_Provider.defaultProps = {
   context: react_alert_Context
 };
 
-var react_alert_useAlert = function useAlert(Context$1) {
-  var alertContext = useContext(Context$1 || react_alert_Context);
-  var alert = useMemo(function () {
+var useAlert = function useAlert(Context$1) {
+  var alertContext = (0,react.useContext)(Context$1 || react_alert_Context);
+  var alert = (0,react.useMemo)(function () {
     return alertContext.current;
   }, [alertContext]);
   return alert;
@@ -26467,7 +26467,7 @@ function withRouter(Component) {
 }
 
 var react_router_useContext = react.useContext;
-function react_router_useHistory() {
+function useHistory() {
   if (false) {}
 
   return react_router_useContext(historyContext);
@@ -26645,7 +26645,7 @@ if (false) {}
  */
 
 
-var react_router_dom_Link = forwardRef(function (_ref2, forwardedRef) {
+var Link = forwardRef(function (_ref2, forwardedRef) {
   var _ref2$component = _ref2.component,
       component = _ref2$component === void 0 ? LinkAnchor : _ref2$component,
       replace = _ref2.replace,
@@ -26753,7 +26753,7 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
       props.innerRef = innerRef;
     }
 
-    return react.createElement(react_router_dom_Link, props);
+    return react.createElement(Link, props);
   });
 });
 
@@ -26769,7 +26769,7 @@ var modules = __webpack_require__(6261);
 ;// CONCATENATED MODULE: ./src/assets/logo.png
 /* harmony default export */ const logo = (__webpack_require__.p + "789983935077224e338f414863d07cf9.png");
 ;// CONCATENATED MODULE: ./src/components/Navbar/MenuItem/MenuItem.jsx
-var MenuItem_MenuItems = [{
+var MenuItems = [{
   title: 'odliczanie',
   url: 'home',
   cName: 'nav-links'
@@ -26813,15 +26813,15 @@ var style = (0,bem_css_modules/* default */.Z)(Navbar_module);
 var Navbar = () => {
   var {
     isMobile
-  } = useContext(StoreContext);
-  var [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
-  var [visible, setVisible] = useState(true);
-  var [isOpen, setIsOpen] = useState(false);
+  } = (0,react.useContext)(StoreProvider_StoreContext);
+  var [prevScrollpos, setPrevScrollpos] = (0,react.useState)(window.pageYOffset);
+  var [visible, setVisible] = (0,react.useState)(true);
+  var [isOpen, setIsOpen] = (0,react.useState)(false);
   var Items = MenuItems.map((item, index) => {
-    return /*#__PURE__*/React.createElement("li", {
+    return /*#__PURE__*/react.createElement("li", {
       key: index,
       className: style("nav-item")
-    }, /*#__PURE__*/React.createElement(Link, {
+    }, /*#__PURE__*/react.createElement(modules/* Link */.rU, {
       smooth: true,
       duration: 1000,
       to: item.url,
@@ -26830,7 +26830,7 @@ var Navbar = () => {
       offset: isMobile ? 0 : -185
     }, item.title));
   });
-  useEffect(() => {
+  (0,react.useEffect)(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -26860,39 +26860,39 @@ var Navbar = () => {
   var itemStyle = isOpen ? style("nav-menu", {
     active: true
   }) : style("nav-menu");
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("nav", {
     className: style("")
-  }, /*#__PURE__*/React.createElement("div", null, isMobile ? null : /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", null, isMobile ? null : /*#__PURE__*/react.createElement("div", {
     className: style("logo-wrapper")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: style("logo-border")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: style("logo"),
-    src: img,
+    src: logo,
     alt: ""
-  }))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/react.createElement("div", {
     className: style("wrapper")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: style("menu-button"),
     onClick: handleOnClick
-  }, isOpen ? /*#__PURE__*/React.createElement("img", {
+  }, isOpen ? /*#__PURE__*/react.createElement("img", {
     className: style("icon-close"),
-    src: close,
+    src: assets_close,
     alt: ""
-  }) : /*#__PURE__*/React.createElement("img", {
+  }) : /*#__PURE__*/react.createElement("img", {
     className: style("icon"),
-    src: menu,
+    src: burgerMenu,
     alt: ""
-  })), /*#__PURE__*/React.createElement("ul", {
+  })), /*#__PURE__*/react.createElement("ul", {
     className: itemStyle
-  }, isMobile ? /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("img", {
+  }, isMobile ? /*#__PURE__*/react.createElement("li", null, /*#__PURE__*/react.createElement("img", {
     className: style("nav-logo"),
-    src: img,
+    src: logo,
     alt: ""
   })) : null, Items)))));
 };
 
-/* harmony default export */ const Navbar_Navbar = ((/* unused pure expression or super */ null && (Navbar)));
+/* harmony default export */ const Navbar_Navbar = (Navbar);
 ;// CONCATENATED MODULE: ./node_modules/gsap/gsap-core.js
 function gsap_core_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
@@ -32155,7 +32155,7 @@ var Home_Home = () => {
   var [timerSecounds, setTimerSecounds] = (0,react.useState)('00');
   var [offset, setOffset] = (0,react.useState)();
   var [guests, setGuests] = (0,react.useState)([]);
-  var history = react_router_useHistory();
+  var history = useHistory();
 
   var updateList = () => {
     var guest = history.location.pathname.substring(1);
@@ -34002,9 +34002,9 @@ function Mapa(props) {
 var WrappedMap = (0,lib/* withScriptjs */.WS)((0,lib/* withGoogleMap */.OI)(Mapa));
 
 var Map = () => {
-  var [offset, setOffset] = (0,react.useState)();
-  var image = (0,react.useRef)(null);
-  var map = (0,react.useRef)(null);
+  var [offset, setOffset] = useState();
+  var image = useRef(null);
+  var map = useRef(null);
 
   var handleScroll = () => setOffset(window.pageYOffset);
 
@@ -34012,16 +34012,16 @@ var Map = () => {
   var mystyle = {
     backgroundPositionY: offset * 0.7 + "px"
   };
-  (0,react.useEffect)(() => {
-    gsapWithCSS.set([image, map], {
+  useEffect(() => {
+    gsap.set([image, map], {
       autoAlpha: 0
     });
-    var tl = gsapWithCSS.timeline({
+    var tl = gsap.timeline({
       defaults: {
         ease: "power3.inOut"
       }
     });
-    gsapWithCSS.fromTo(image, {
+    gsap.fromTo(image, {
       x: "-=100"
     }, {
       duration: 2,
@@ -34034,7 +34034,7 @@ var Map = () => {
         markers: false
       }
     });
-    gsapWithCSS.fromTo(map, {
+    gsap.fromTo(map, {
       y: "+=100"
     }, {
       duration: 2,
@@ -34049,44 +34049,44 @@ var Map = () => {
       }
     });
   }, []);
-  return /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     id: "route",
     className: Map_style("")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("wrapper")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("left")
-  }, /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/React.createElement("img", {
     ref: el => {
       image = el;
     },
     className: Map_style("img"),
-    src: HM,
+    src: img,
     alt: ""
-  })), /*#__PURE__*/react.createElement("div", {
+  })), /*#__PURE__*/React.createElement("div", {
     ref: el => {
       map = el;
     },
     className: Map_style("right")
-  }, /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/react.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/react.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/react.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/react.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h2", null, "\u015Alub odb\u0119dzie si\u0119"), /*#__PURE__*/React.createElement("p", null, "01.10.2021 o godz. 16:00 ", /*#__PURE__*/React.createElement("br", null), "W ko\u015Bciele Chrystusa Wieczystego Kap\u0142ana", /*#__PURE__*/React.createElement("br", null), "ul. 28 Grudnia, Gniezno")), /*#__PURE__*/React.createElement("div", {
     className: Map_style("location")
-  }, /*#__PURE__*/react.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/react.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/react.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/react.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/react.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h2", null, "Po ceremonii ko\u015Bcielnej"), /*#__PURE__*/React.createElement("p", null, "Zapraszamy na przyj\u0119cie weselne, ", /*#__PURE__*/React.createElement("br", null), " kt\xF3re odb\u0119dzie si\u0119 w Restauracji ", /*#__PURE__*/React.createElement("br", null), " Stary Kamionek w Kamionku")), /*#__PURE__*/React.createElement("div", {
     className: Map_style("map")
-  }, /*#__PURE__*/react.createElement(WrappedMap, {
+  }, /*#__PURE__*/React.createElement(WrappedMap, {
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0",
-    loadingElement: /*#__PURE__*/react.createElement("div", {
+    loadingElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    containerElement: /*#__PURE__*/react.createElement("div", {
+    containerElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
     }),
-    mapElement: /*#__PURE__*/react.createElement("div", {
+    mapElement: /*#__PURE__*/React.createElement("div", {
       style: {
         height: "100%"
       }
@@ -34094,7 +34094,7 @@ var Map = () => {
   }))))); //AIzaSyBtH3x10QgQaasPBEz8oXcxM-CBL-Iog-0
 };
 
-/* harmony default export */ const Map_Map = (Map);
+/* harmony default export */ const Map_Map = ((/* unused pure expression or super */ null && (Map)));
 ;// CONCATENATED MODULE: ./src/components/Music/Music.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Music_module = ({"Music":"Music","Music__title":"Music__title"});
@@ -34236,15 +34236,15 @@ var Photos = () => {
 var Gallery_style = (0,bem_css_modules/* default */.Z)(Gallery_module);
 
 var Gallery = () => {
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react.createElement("div", {
     id: "gallery",
     className: Gallery_style('')
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     src: "https://img.icons8.com/carbon-copy/100/000000/camera--v1.png"
-  }), /*#__PURE__*/React.createElement("h2", null, "Zajrzyjcie tu tak\u017Ce po \u015Blubie"), /*#__PURE__*/React.createElement("p", null, "Gdy tylko otrzymamy zdj\u0119cia i film z uroczysto\u015Bci umie\u015Bcimy je na stronie, dzi\u0119ki czemu b\u0119dziecie mieli mo\u017Cliwo\u015B\u0107 obejrze\u0107 je oraz pobra\u0107."));
+  }), /*#__PURE__*/react.createElement("h2", null, "Zajrzyjcie tu tak\u017Ce po \u015Blubie"), /*#__PURE__*/react.createElement("p", null, "Gdy tylko otrzymamy zdj\u0119cia i film z uroczysto\u015Bci umie\u015Bcimy je na stronie, dzi\u0119ki czemu b\u0119dziecie mieli mo\u017Cliwo\u015B\u0107 obejrze\u0107 je oraz pobra\u0107."));
 };
 
-/* harmony default export */ const Gallery_Gallery = ((/* unused pure expression or super */ null && (Gallery)));
+/* harmony default export */ const Gallery_Gallery = (Gallery);
 ;// CONCATENATED MODULE: ./src/components/Contact/Contact.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Contact_module = ({"Contact":"Contact","Contact__wrapper":"Contact__wrapper","Contact__section":"Contact__section","Contact__main-img":"Contact__main-img","Contact__second-img":"Contact__second-img","Contact__name":"Contact__name","Contact__phone":"Contact__phone"});
@@ -34267,122 +34267,122 @@ var Contact_style = (0,bem_css_modules/* default */.Z)(Contact_module);
 var Contact = () => {
   var {
     isMobile
-  } = useContext(StoreContext);
-  return /*#__PURE__*/React.createElement("section", {
+  } = (0,react.useContext)(StoreProvider_StoreContext);
+  return /*#__PURE__*/react.createElement("section", {
     id: "contact",
     className: Contact_style("")
-  }, isMobile ? /*#__PURE__*/React.createElement("div", {
+  }, isMobile ? /*#__PURE__*/react.createElement("div", {
     className: Contact_style("wrapper")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: img
-  }), /*#__PURE__*/React.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/React.createElement("p", {
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:696-192-338"
-  }, "Tel. 696 192 338")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 696 192 338")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "panna m\u0142oda")), /*#__PURE__*/React.createElement("div", {
+  }, "panna m\u0142oda")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: img
-  }), /*#__PURE__*/React.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/React.createElement("p", {
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:512-514-374"
-  }, "Tel. 512 514 374")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 512 514 374")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "pan m\u0142ody")), /*#__PURE__*/React.createElement("div", {
+  }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("second-img"),
-    src: img1
-  }), /*#__PURE__*/React.createElement("p", null, "marta orlikowska"), /*#__PURE__*/React.createElement("p", {
+    src: she1
+  }), /*#__PURE__*/react.createElement("p", null, "marta orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:666-308-643"
-  }, "Tel. 666 308 643")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 666 308 643")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadkowa")), /*#__PURE__*/React.createElement("div", {
+  }, "\u015Bwiadkowa")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("second-img"),
-    src: img4
-  }), /*#__PURE__*/React.createElement("p", null, "piotr chudy"), /*#__PURE__*/React.createElement("p", {
+    src: he1
+  }), /*#__PURE__*/react.createElement("p", null, "piotr chudy"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:601-658-987"
-  }, "Tel. 601 658 987")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 601 658 987")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadek"))) : /*#__PURE__*/React.createElement("div", {
+  }, "\u015Bwiadek"))) : /*#__PURE__*/react.createElement("div", {
     className: Contact_style("wrapper")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("second-img"),
-    src: img1
-  }), /*#__PURE__*/React.createElement("p", null, "marta orlikowska"), /*#__PURE__*/React.createElement("p", {
+    src: she1
+  }), /*#__PURE__*/react.createElement("p", null, "marta orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:666-308-643"
-  }, "Tel. 666 308 643")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 666 308 643")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#C25623"
     },
     className: Contact_style("name")
-  }, "\u015Bwiadkowa")), /*#__PURE__*/React.createElement("div", {
+  }, "\u015Bwiadkowa")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: img
-  }), /*#__PURE__*/React.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/React.createElement("p", {
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:696-192-338"
-  }, "Tel. 696 192 338")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 696 192 338")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "panna m\u0142oda")), /*#__PURE__*/React.createElement("div", {
+  }, "panna m\u0142oda")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: img
-  }), /*#__PURE__*/React.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/React.createElement("p", {
+    src: morda1
+  }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:512-514-374"
-  }, "Tel. 512 514 374")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 512 514 374")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#DC9E9D"
     },
     className: Contact_style("name")
-  }, "pan m\u0142ody")), /*#__PURE__*/React.createElement("div", {
+  }, "pan m\u0142ody")), /*#__PURE__*/react.createElement("div", {
     className: Contact_style("section")
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("second-img"),
-    src: img4
-  }), /*#__PURE__*/React.createElement("p", null, "piotr chudy"), /*#__PURE__*/React.createElement("p", {
+    src: he1
+  }), /*#__PURE__*/react.createElement("p", null, "piotr chudy"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react.createElement("a", {
     href: "tel:601-658-987"
-  }, "Tel. 601 658 987")), /*#__PURE__*/React.createElement("p", {
+  }, "Tel. 601 658 987")), /*#__PURE__*/react.createElement("p", {
     style: {
       color: "#C25623"
     },
@@ -34390,7 +34390,7 @@ var Contact = () => {
   }, "\u015Bwiadek"))));
 };
 
-/* harmony default export */ const Contact_Contact = ((/* unused pure expression or super */ null && (Contact)));
+/* harmony default export */ const Contact_Contact = (Contact);
 ;// CONCATENATED MODULE: ./src/components/Info/Info.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Info_module = ({"Info":"Info","Info__wrapper":"Info__wrapper","Info__left":"Info__left","Info__wave":"Info__wave","Info__btn":"Info__btn"});
@@ -34418,14 +34418,14 @@ var Popup_Popup = (_ref) => {
     onClose
   } = _ref;
   if (!open) return null;
-  var [guests, setGuests] = useState([]);
-  var [guests2, setGuests2] = useState([]);
+  var [guests, setGuests] = (0,react.useState)([]);
+  var [guests2, setGuests2] = (0,react.useState)([]);
   var alert = useAlert();
   var history = useHistory();
 
   var updateList = () => {
     var guest = history.location.pathname.substring(1);
-    axios.get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
+    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
       if (response.status == 200) {
         setGuests(response.data);
       } else {// alert.show('Coś poszło nie tak')
@@ -34435,7 +34435,7 @@ var Popup_Popup = (_ref) => {
     });
   };
 
-  useEffect(() => {
+  (0,react.useEffect)(() => {
     updateList();
   }, []);
 
@@ -34445,7 +34445,7 @@ var Popup_Popup = (_ref) => {
     }
   };
 
-  useEffect(() => {
+  (0,react.useEffect)(() => {
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
@@ -34465,7 +34465,7 @@ var Popup_Popup = (_ref) => {
         decisionStatus: number
       }]
     };
-    axios.post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
+    axios_default().post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
       console.log(response.status);
 
       if (response.status == 200) {
@@ -34483,31 +34483,31 @@ var Popup_Popup = (_ref) => {
     });
   };
 
-  return /*#__PURE__*/ReactDom.createPortal( /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react_dom.createPortal( /*#__PURE__*/react.createElement("div", {
     className: Popup_style("")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Popup_style("popup_background")
-  }), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/react.createElement("div", {
     className: Popup_style("popup")
-  }, guests.map(item => /*#__PURE__*/React.createElement("div", {
+  }, guests.map(item => /*#__PURE__*/react.createElement("div", {
     className: Popup_style("guest"),
     key: item.firstName
-  }, /*#__PURE__*/React.createElement("h1", null, item.firstName, " ", item.lastName), /*#__PURE__*/React.createElement("p", null, "Status:", " ", item.decisionStatus == 0 ? "Nieokreślony" : null, item.decisionStatus == 1 ? "Brak obecności" : null, item.decisionStatus == 2 ? "Niezdecydowany" : null, item.decisionStatus == 3 ? "Potwierdzony" : null), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("h1", null, item.firstName, " ", item.lastName), /*#__PURE__*/react.createElement("p", null, "Status:", " ", item.decisionStatus == 0 ? "Nieokreślony" : null, item.decisionStatus == 1 ? "Brak obecności" : null, item.decisionStatus == 2 ? "Niezdecydowany" : null, item.decisionStatus == 3 ? "Potwierdzony" : null), /*#__PURE__*/react.createElement("div", {
     className: Popup_style("btnWrapper")
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: () => handleStatus(3, item)
-  }, "Bawimy si\u0119 z Wami do rana"), /*#__PURE__*/React.createElement("button", {
+  }, "Bawimy si\u0119 z Wami do rana"), /*#__PURE__*/react.createElement("button", {
     onClick: () => handleStatus(1, item)
-  }, "Niestety mnie nie b\u0119dzie")))), /*#__PURE__*/React.createElement("div", {
+  }, "Niestety mnie nie b\u0119dzie")))), /*#__PURE__*/react.createElement("div", {
     onClick: () => onClose(),
     className: Popup_style("close")
-  }, /*#__PURE__*/React.createElement("i", {
+  }, /*#__PURE__*/react.createElement("i", {
     onClick: () => onClose(),
     className: "fas fa-times"
   })))), document.getElementById("portal"));
 };
 
-/* harmony default export */ const components_Popup_Popup = ((/* unused pure expression or super */ null && (Popup_Popup)));
+/* harmony default export */ const components_Popup_Popup = (Popup_Popup);
 ;// CONCATENATED MODULE: ./src/components/Info/Info.jsx
 
 
@@ -34665,22 +34665,22 @@ var Details = () => {
 var Confirmation_style = (0,bem_css_modules/* default */.Z)(Confirmation_module);
 
 var Confirmation = () => {
-  var [isOpen, setIsOpen] = useState(false);
-  return /*#__PURE__*/React.createElement("div", {
+  var [isOpen, setIsOpen] = (0,react.useState)(false);
+  return /*#__PURE__*/react.createElement("div", {
     id: "confirmation",
     className: Confirmation_style("")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react.createElement("div", {
     className: Confirmation_style("wrapper")
-  }, /*#__PURE__*/React.createElement("h1", null, "Hej wesele!"), /*#__PURE__*/React.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej, znajdziecie opcje potwierdzenia swojej obecno\u015Bci oraz alternatywn\u0105 \u2013 poinformowania nas, \u017Ce nie mo\u017Cecie przyby\u0107 na nasze wesele. Prosimy o informacj\u0119 do 10 wrze\u015Bnia 2021."), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/react.createElement("h1", null, "Hej wesele!"), /*#__PURE__*/react.createElement("span", null, "Mamy nadziej\u0119, \u017Ce b\u0119dziecie tego dnia razem z nami. Poni\u017Cej, znajdziecie opcje potwierdzenia swojej obecno\u015Bci oraz alternatywn\u0105 \u2013 poinformowania nas, \u017Ce nie mo\u017Cecie przyby\u0107 na nasze wesele. Prosimy o informacj\u0119 do 10 wrze\u015Bnia 2021."), /*#__PURE__*/react.createElement("button", {
     onClick: () => setIsOpen(true),
     className: Confirmation_style("btn")
-  }, "Potwierd\u017A obecno\u015B\u0107!"), /*#__PURE__*/React.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/React.createElement(Popup, {
+  }, "Potwierd\u017A obecno\u015B\u0107!"), /*#__PURE__*/react.createElement("span", null, "P.S. Je\u015Bli nie stanowi to dla Was problemu, prosimy o podarowanie nam bia\u0142ego wina zamiast kwiat\xF3w :)"), /*#__PURE__*/react.createElement(components_Popup_Popup, {
     open: isOpen,
     onClose: () => setIsOpen(false)
   })));
 };
 
-/* harmony default export */ const Confirmation_Confirmation = ((/* unused pure expression or super */ null && (Confirmation)));
+/* harmony default export */ const Confirmation_Confirmation = (Confirmation);
 ;// CONCATENATED MODULE: ./src/components/Wine/Wine.module.scss
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const Wine_module = ({"Wine":"Wine","Wine__wrapper":"Wine__wrapper"});
@@ -34699,786 +34699,6 @@ var Wine = () => {
 };
 
 /* harmony default export */ const Wine_Wine = ((/* unused pure expression or super */ null && (Wine)));
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function defineProperty_defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-
-
-function objectSpread2_ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function objectSpread2_objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      objectSpread2_ownKeys(Object(source), true).forEach(function (key) {
-        defineProperty_defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      objectSpread2_ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-;// CONCATENATED MODULE: ./node_modules/redux/es/redux.js
-
-
-/**
- * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
- *
- * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
- * during build.
- * @param {number} code
- */
-function formatProdErrorMessage(code) {
-  return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
-}
-
-// Inlined version of the `symbol-observable` polyfill
-var $$observable = (function () {
-  return typeof Symbol === 'function' && Symbol.observable || '@@observable';
-})();
-
-/**
- * These are private action types reserved by Redux.
- * For any unknown actions, you must return the current state.
- * If the current state is undefined, you must return the initial state.
- * Do not reference these action types directly in your code.
- */
-var randomString = function randomString() {
-  return Math.random().toString(36).substring(7).split('').join('.');
-};
-
-var ActionTypes = {
-  INIT: "@@redux/INIT" + randomString(),
-  REPLACE: "@@redux/REPLACE" + randomString(),
-  PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
-    return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
-  }
-};
-
-/**
- * @param {any} obj The object to inspect.
- * @returns {boolean} True if the argument appears to be a plain object.
- */
-function isPlainObject(obj) {
-  if (typeof obj !== 'object' || obj === null) return false;
-  var proto = obj;
-
-  while (Object.getPrototypeOf(proto) !== null) {
-    proto = Object.getPrototypeOf(proto);
-  }
-
-  return Object.getPrototypeOf(obj) === proto;
-}
-
-function kindOf(val) {
-  var typeOfVal = typeof val;
-
-  if (false) {}
-
-  return typeOfVal;
-}
-
-/**
- * Creates a Redux store that holds the state tree.
- * The only way to change the data in the store is to call `dispatch()` on it.
- *
- * There should only be a single store in your app. To specify how different
- * parts of the state tree respond to actions, you may combine several reducers
- * into a single reducer function by using `combineReducers`.
- *
- * @param {Function} reducer A function that returns the next state tree, given
- * the current state tree and the action to handle.
- *
- * @param {any} [preloadedState] The initial state. You may optionally specify it
- * to hydrate the state from the server in universal apps, or to restore a
- * previously serialized user session.
- * If you use `combineReducers` to produce the root reducer function, this must be
- * an object with the same shape as `combineReducers` keys.
- *
- * @param {Function} [enhancer] The store enhancer. You may optionally specify it
- * to enhance the store with third-party capabilities such as middleware,
- * time travel, persistence, etc. The only store enhancer that ships with Redux
- * is `applyMiddleware()`.
- *
- * @returns {Store} A Redux store that lets you read the state, dispatch actions
- * and subscribe to changes.
- */
-
-function createStore(reducer, preloadedState, enhancer) {
-  var _ref2;
-
-  if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
-    throw new Error( true ? formatProdErrorMessage(0) : 0);
-  }
-
-  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
-    enhancer = preloadedState;
-    preloadedState = undefined;
-  }
-
-  if (typeof enhancer !== 'undefined') {
-    if (typeof enhancer !== 'function') {
-      throw new Error( true ? formatProdErrorMessage(1) : 0);
-    }
-
-    return enhancer(createStore)(reducer, preloadedState);
-  }
-
-  if (typeof reducer !== 'function') {
-    throw new Error( true ? formatProdErrorMessage(2) : 0);
-  }
-
-  var currentReducer = reducer;
-  var currentState = preloadedState;
-  var currentListeners = [];
-  var nextListeners = currentListeners;
-  var isDispatching = false;
-  /**
-   * This makes a shallow copy of currentListeners so we can use
-   * nextListeners as a temporary list while dispatching.
-   *
-   * This prevents any bugs around consumers calling
-   * subscribe/unsubscribe in the middle of a dispatch.
-   */
-
-  function ensureCanMutateNextListeners() {
-    if (nextListeners === currentListeners) {
-      nextListeners = currentListeners.slice();
-    }
-  }
-  /**
-   * Reads the state tree managed by the store.
-   *
-   * @returns {any} The current state tree of your application.
-   */
-
-
-  function getState() {
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(3) : 0);
-    }
-
-    return currentState;
-  }
-  /**
-   * Adds a change listener. It will be called any time an action is dispatched,
-   * and some part of the state tree may potentially have changed. You may then
-   * call `getState()` to read the current state tree inside the callback.
-   *
-   * You may call `dispatch()` from a change listener, with the following
-   * caveats:
-   *
-   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
-   * If you subscribe or unsubscribe while the listeners are being invoked, this
-   * will not have any effect on the `dispatch()` that is currently in progress.
-   * However, the next `dispatch()` call, whether nested or not, will use a more
-   * recent snapshot of the subscription list.
-   *
-   * 2. The listener should not expect to see all state changes, as the state
-   * might have been updated multiple times during a nested `dispatch()` before
-   * the listener is called. It is, however, guaranteed that all subscribers
-   * registered before the `dispatch()` started will be called with the latest
-   * state by the time it exits.
-   *
-   * @param {Function} listener A callback to be invoked on every dispatch.
-   * @returns {Function} A function to remove this change listener.
-   */
-
-
-  function subscribe(listener) {
-    if (typeof listener !== 'function') {
-      throw new Error( true ? formatProdErrorMessage(4) : 0);
-    }
-
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(5) : 0);
-    }
-
-    var isSubscribed = true;
-    ensureCanMutateNextListeners();
-    nextListeners.push(listener);
-    return function unsubscribe() {
-      if (!isSubscribed) {
-        return;
-      }
-
-      if (isDispatching) {
-        throw new Error( true ? formatProdErrorMessage(6) : 0);
-      }
-
-      isSubscribed = false;
-      ensureCanMutateNextListeners();
-      var index = nextListeners.indexOf(listener);
-      nextListeners.splice(index, 1);
-      currentListeners = null;
-    };
-  }
-  /**
-   * Dispatches an action. It is the only way to trigger a state change.
-   *
-   * The `reducer` function, used to create the store, will be called with the
-   * current state tree and the given `action`. Its return value will
-   * be considered the **next** state of the tree, and the change listeners
-   * will be notified.
-   *
-   * The base implementation only supports plain object actions. If you want to
-   * dispatch a Promise, an Observable, a thunk, or something else, you need to
-   * wrap your store creating function into the corresponding middleware. For
-   * example, see the documentation for the `redux-thunk` package. Even the
-   * middleware will eventually dispatch plain object actions using this method.
-   *
-   * @param {Object} action A plain object representing “what changed”. It is
-   * a good idea to keep actions serializable so you can record and replay user
-   * sessions, or use the time travelling `redux-devtools`. An action must have
-   * a `type` property which may not be `undefined`. It is a good idea to use
-   * string constants for action types.
-   *
-   * @returns {Object} For convenience, the same action object you dispatched.
-   *
-   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
-   * return something else (for example, a Promise you can await).
-   */
-
-
-  function dispatch(action) {
-    if (!isPlainObject(action)) {
-      throw new Error( true ? formatProdErrorMessage(7) : 0);
-    }
-
-    if (typeof action.type === 'undefined') {
-      throw new Error( true ? formatProdErrorMessage(8) : 0);
-    }
-
-    if (isDispatching) {
-      throw new Error( true ? formatProdErrorMessage(9) : 0);
-    }
-
-    try {
-      isDispatching = true;
-      currentState = currentReducer(currentState, action);
-    } finally {
-      isDispatching = false;
-    }
-
-    var listeners = currentListeners = nextListeners;
-
-    for (var i = 0; i < listeners.length; i++) {
-      var listener = listeners[i];
-      listener();
-    }
-
-    return action;
-  }
-  /**
-   * Replaces the reducer currently used by the store to calculate the state.
-   *
-   * You might need this if your app implements code splitting and you want to
-   * load some of the reducers dynamically. You might also need this if you
-   * implement a hot reloading mechanism for Redux.
-   *
-   * @param {Function} nextReducer The reducer for the store to use instead.
-   * @returns {void}
-   */
-
-
-  function replaceReducer(nextReducer) {
-    if (typeof nextReducer !== 'function') {
-      throw new Error( true ? formatProdErrorMessage(10) : 0);
-    }
-
-    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-    // Any reducers that existed in both the new and old rootReducer
-    // will receive the previous state. This effectively populates
-    // the new state tree with any relevant data from the old one.
-
-    dispatch({
-      type: ActionTypes.REPLACE
-    });
-  }
-  /**
-   * Interoperability point for observable/reactive libraries.
-   * @returns {observable} A minimal observable of state changes.
-   * For more information, see the observable proposal:
-   * https://github.com/tc39/proposal-observable
-   */
-
-
-  function observable() {
-    var _ref;
-
-    var outerSubscribe = subscribe;
-    return _ref = {
-      /**
-       * The minimal observable subscription method.
-       * @param {Object} observer Any object that can be used as an observer.
-       * The observer object should have a `next` method.
-       * @returns {subscription} An object with an `unsubscribe` method that can
-       * be used to unsubscribe the observable from the store, and prevent further
-       * emission of values from the observable.
-       */
-      subscribe: function subscribe(observer) {
-        if (typeof observer !== 'object' || observer === null) {
-          throw new Error( true ? formatProdErrorMessage(11) : 0);
-        }
-
-        function observeState() {
-          if (observer.next) {
-            observer.next(getState());
-          }
-        }
-
-        observeState();
-        var unsubscribe = outerSubscribe(observeState);
-        return {
-          unsubscribe: unsubscribe
-        };
-      }
-    }, _ref[$$observable] = function () {
-      return this;
-    }, _ref;
-  } // When a store is created, an "INIT" action is dispatched so that every
-  // reducer returns their initial state. This effectively populates
-  // the initial state tree.
-
-
-  dispatch({
-    type: ActionTypes.INIT
-  });
-  return _ref2 = {
-    dispatch: dispatch,
-    subscribe: subscribe,
-    getState: getState,
-    replaceReducer: replaceReducer
-  }, _ref2[$$observable] = observable, _ref2;
-}
-
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */
-function warning(message) {
-  /* eslint-disable no-console */
-  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    console.error(message);
-  }
-  /* eslint-enable no-console */
-
-
-  try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
-    throw new Error(message);
-  } catch (e) {} // eslint-disable-line no-empty
-
-}
-
-function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
-  var reducerKeys = Object.keys(reducers);
-  var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
-
-  if (reducerKeys.length === 0) {
-    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
-  }
-
-  if (!isPlainObject(inputState)) {
-    return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
-  }
-
-  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
-    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
-  });
-  unexpectedKeys.forEach(function (key) {
-    unexpectedKeyCache[key] = true;
-  });
-  if (action && action.type === ActionTypes.REPLACE) return;
-
-  if (unexpectedKeys.length > 0) {
-    return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
-  }
-}
-
-function assertReducerShape(reducers) {
-  Object.keys(reducers).forEach(function (key) {
-    var reducer = reducers[key];
-    var initialState = reducer(undefined, {
-      type: ActionTypes.INIT
-    });
-
-    if (typeof initialState === 'undefined') {
-      throw new Error( true ? formatProdErrorMessage(12) : 0);
-    }
-
-    if (typeof reducer(undefined, {
-      type: ActionTypes.PROBE_UNKNOWN_ACTION()
-    }) === 'undefined') {
-      throw new Error( true ? formatProdErrorMessage(13) : 0);
-    }
-  });
-}
-/**
- * Turns an object whose values are different reducer functions, into a single
- * reducer function. It will call every child reducer, and gather their results
- * into a single state object, whose keys correspond to the keys of the passed
- * reducer functions.
- *
- * @param {Object} reducers An object whose values correspond to different
- * reducer functions that need to be combined into one. One handy way to obtain
- * it is to use ES6 `import * as reducers` syntax. The reducers may never return
- * undefined for any action. Instead, they should return their initial state
- * if the state passed to them was undefined, and the current state for any
- * unrecognized action.
- *
- * @returns {Function} A reducer function that invokes every reducer inside the
- * passed object, and builds a state object with the same shape.
- */
-
-
-function combineReducers(reducers) {
-  var reducerKeys = Object.keys(reducers);
-  var finalReducers = {};
-
-  for (var i = 0; i < reducerKeys.length; i++) {
-    var key = reducerKeys[i];
-
-    if (false) {}
-
-    if (typeof reducers[key] === 'function') {
-      finalReducers[key] = reducers[key];
-    }
-  }
-
-  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-  // keys multiple times.
-
-  var unexpectedKeyCache;
-
-  if (false) {}
-
-  var shapeAssertionError;
-
-  try {
-    assertReducerShape(finalReducers);
-  } catch (e) {
-    shapeAssertionError = e;
-  }
-
-  return function combination(state, action) {
-    if (state === void 0) {
-      state = {};
-    }
-
-    if (shapeAssertionError) {
-      throw shapeAssertionError;
-    }
-
-    if (false) { var warningMessage; }
-
-    var hasChanged = false;
-    var nextState = {};
-
-    for (var _i = 0; _i < finalReducerKeys.length; _i++) {
-      var _key = finalReducerKeys[_i];
-      var reducer = finalReducers[_key];
-      var previousStateForKey = state[_key];
-      var nextStateForKey = reducer(previousStateForKey, action);
-
-      if (typeof nextStateForKey === 'undefined') {
-        var actionType = action && action.type;
-        throw new Error( true ? formatProdErrorMessage(14) : 0);
-      }
-
-      nextState[_key] = nextStateForKey;
-      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
-    }
-
-    hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
-    return hasChanged ? nextState : state;
-  };
-}
-
-function bindActionCreator(actionCreator, dispatch) {
-  return function () {
-    return dispatch(actionCreator.apply(this, arguments));
-  };
-}
-/**
- * Turns an object whose values are action creators, into an object with the
- * same keys, but with every function wrapped into a `dispatch` call so they
- * may be invoked directly. This is just a convenience method, as you can call
- * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
- *
- * For convenience, you can also pass an action creator as the first argument,
- * and get a dispatch wrapped function in return.
- *
- * @param {Function|Object} actionCreators An object whose values are action
- * creator functions. One handy way to obtain it is to use ES6 `import * as`
- * syntax. You may also pass a single function.
- *
- * @param {Function} dispatch The `dispatch` function available on your Redux
- * store.
- *
- * @returns {Function|Object} The object mimicking the original object, but with
- * every action creator wrapped into the `dispatch` call. If you passed a
- * function as `actionCreators`, the return value will also be a single
- * function.
- */
-
-
-function redux_bindActionCreators(actionCreators, dispatch) {
-  if (typeof actionCreators === 'function') {
-    return bindActionCreator(actionCreators, dispatch);
-  }
-
-  if (typeof actionCreators !== 'object' || actionCreators === null) {
-    throw new Error( true ? formatProdErrorMessage(16) : 0);
-  }
-
-  var boundActionCreators = {};
-
-  for (var key in actionCreators) {
-    var actionCreator = actionCreators[key];
-
-    if (typeof actionCreator === 'function') {
-      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
-    }
-  }
-
-  return boundActionCreators;
-}
-
-/**
- * Composes single-argument functions from right to left. The rightmost
- * function can take multiple arguments as it provides the signature for
- * the resulting composite function.
- *
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
- */
-function compose() {
-  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
-    funcs[_key] = arguments[_key];
-  }
-
-  if (funcs.length === 0) {
-    return function (arg) {
-      return arg;
-    };
-  }
-
-  if (funcs.length === 1) {
-    return funcs[0];
-  }
-
-  return funcs.reduce(function (a, b) {
-    return function () {
-      return a(b.apply(void 0, arguments));
-    };
-  });
-}
-
-/**
- * Creates a store enhancer that applies middleware to the dispatch method
- * of the Redux store. This is handy for a variety of tasks, such as expressing
- * asynchronous actions in a concise manner, or logging every action payload.
- *
- * See `redux-thunk` package as an example of the Redux middleware.
- *
- * Because middleware is potentially asynchronous, this should be the first
- * store enhancer in the composition chain.
- *
- * Note that each middleware will be given the `dispatch` and `getState` functions
- * as named arguments.
- *
- * @param {...Function} middlewares The middleware chain to be applied.
- * @returns {Function} A store enhancer applying the middleware.
- */
-
-function applyMiddleware() {
-  for (var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++) {
-    middlewares[_key] = arguments[_key];
-  }
-
-  return function (createStore) {
-    return function () {
-      var store = createStore.apply(void 0, arguments);
-
-      var _dispatch = function dispatch() {
-        throw new Error( true ? formatProdErrorMessage(15) : 0);
-      };
-
-      var middlewareAPI = {
-        getState: store.getState,
-        dispatch: function dispatch() {
-          return _dispatch.apply(void 0, arguments);
-        }
-      };
-      var chain = middlewares.map(function (middleware) {
-        return middleware(middlewareAPI);
-      });
-      _dispatch = compose.apply(void 0, chain)(store.dispatch);
-      return objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, store), {}, {
-        dispatch: _dispatch
-      });
-    };
-  };
-}
-
-/*
- * This is a dummy function to check if the function name has been altered by minification.
- * If the function has been minified and NODE_ENV !== 'production', warn the user.
- */
-
-function isCrushed() {}
-
-if (false) {}
-
-
-
-;// CONCATENATED MODULE: ./src/actions/appActions.js
-var ADD = 'ADD';
-var DELETE = 'DELETE';
-var EDIT = 'EDIT';
-var addRate = (_ref) => {
-  var {
-    author,
-    comment,
-    rate
-  } = _ref;
-  return {
-    type: ADD,
-    payload: {
-      author,
-      comment,
-      id: Math.floor(Math.random() * 1234),
-      rate
-    }
-  };
-};
-var deleteRate = id => ({
-  type: DELETE,
-  payload: {
-    id
-  }
-});
-var editRate = (_ref2) => {
-  var {
-    author,
-    comment,
-    id,
-    rate
-  } = _ref2;
-  return {
-    type: EDIT,
-    payload: {
-      author,
-      comment,
-      id,
-      rate
-    }
-  };
-};
-;// CONCATENATED MODULE: ./src/middleware/validateAuthorMiddleware.js
-
-var validateAuthorMiddleware = (_ref) => {
-  var {
-    dispatch
-  } = _ref;
-  return next => action => {
-    if (action.type === ADD && !action.payload.author.length) {
-      console.warn('Autor nie ma imienia i nazwiska');
-      return;
-    }
-
-    next(action);
-  };
-};
-;// CONCATENATED MODULE: ./src/reducers/appReducer.js
-
-var appReducer = function appReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log('Będziemy tworzyć nowy stan aplikacji :)');
-
-  switch (action.type) {
-    case ADD:
-      return [...state, action.payload];
-
-    case EDIT:
-      return state.map(currentStateElement => {
-        if (currentStateElement.id !== action.payload.id) {
-          return currentStateElement;
-        }
-
-        var {
-          author,
-          comment,
-          rate
-        } = action.payload;
-        return {
-          author,
-          comment,
-          id: currentStateElement.id,
-          rate
-        };
-      });
-
-    case DELETE:
-      return state.filter(currentStateElement => currentStateElement.id !== action.payload.id);
-
-    default:
-      console.warn("Nie mamy akcji typu: ".concat(action.type));
-      return state;
-  }
-};
-;// CONCATENATED MODULE: ./src/reducers/rootReducer.js
-
-
-var rootReducer = combineReducers({
-  rates: appReducer
-});
-;// CONCATENATED MODULE: ./src/store/store.js
-
-
-
-var store = createStore(rootReducer, applyMiddleware(validateAuthorMiddleware));
-/* harmony default export */ const store_store = ((/* unused pure expression or super */ null && (store)));
 ;// CONCATENATED MODULE: ./src/App.jsx
 function App_extends() { App_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return App_extends.apply(this, arguments); }
 
@@ -35488,7 +34708,6 @@ function App_extends() { App_extends = Object.assign || function (target) { for 
 
 
  // import { HashRouter as Router, Switch, Route } from "react-router-dom";
-
 
 
 
@@ -35535,60 +34754,33 @@ var App = () => {
     className: "overlay"
   }, /*#__PURE__*/react.createElement("i", {
     className: "fas fa-sync-alt"
-  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) :
-  /*#__PURE__*/
-  // <AlertProvider template={AlertTemplate} {...options}>
-  // <Router>
-  //   <Provider store={store}>
-  //   <StoreProvider>
-  //     <Suspense fallback={<div style={{ height: "100vh" }}>Loading...</div>}>
-  //       <Switch>
-  //         <Route
-  //           exact
-  //           path="/:item"
-  //           render={() => (
-  //             <>
-  //               <Navbar />
-  //               <Home />
-  //               <Details />
-  //               <Contact />
-  //               <Confirmation />
-  //               {/* <Wine /> */}
-  //               <Gallery />
-  //             </>
-  //           )}
-  //         />
-  //         <Route
-  //           path="/"
-  //           render={() => (
-  //             <>
-  //               <Navbar />
-  //               <Home />
-  //               <Details />
-  //               <Contact />
-  //               {/* <Confirmation /> */}
-  //               {/* <Wine /> */}
-  //               <Gallery />
-  //             </>
-  //           )}
-  //         />
-  //       </Switch>
-  //     </Suspense>
-  //   </StoreProvider>
-  //   </Provider>
-  // </Router>
-  // </AlertProvider>
-  react.createElement(react_alert_Provider, App_extends({
+  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
-  }, options), /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(BrowserRouter, {
-    basename: "/build"
-  }, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
-    path: "/:item"
-  }, /*#__PURE__*/react.createElement(Details_Details, null)), /*#__PURE__*/react.createElement(Route, {
-    path: "/topics"
-  }, /*#__PURE__*/react.createElement(Map_Map, null)), /*#__PURE__*/react.createElement(Route, {
-    path: "/"
-  }, /*#__PURE__*/react.createElement(components_Home_Home, null))))));
+  }, options), /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
+    exact: true,
+    path: "hm/:item",
+    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Confirmation_Confirmation, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
+  }), /*#__PURE__*/react.createElement(Route, {
+    path: "/hm/",
+    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
+  }))))) // <AlertProvider template={AlertTemplate} {...options}>
+  //   <StoreProvider>
+  //   <Router >
+  //     <Switch>
+  //       <Route path="/:item">
+  //         <Details />
+  //       </Route>
+  //       <Route path="/topics">
+  //         <Map />
+  //       </Route>
+  //       <Route path="/">
+  //         <Home />
+  //       </Route>
+  //     </Switch>
+  // </Router>
+  //   </StoreProvider>
+  // </AlertProvider>
+  ;
 };
 
 /* harmony default export */ const src_App = (App);
