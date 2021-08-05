@@ -34757,19 +34757,13 @@ var App = () => {
   }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
   }, options), /*#__PURE__*/react.createElement(BrowserRouter, {
-    basename: "hm"
+    basename: "hm/"
   }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
     exact: true,
-    path: ":item",
+    path: "/:item",
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Confirmation_Confirmation, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
   }), /*#__PURE__*/react.createElement(Route, {
     path: "/",
-    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  }), /*#__PURE__*/react.createElement(Route, {
-    path: "hm/x",
-    render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  }), /*#__PURE__*/react.createElement(Route, {
-    path: "/hm/x",
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
   }))))) // <AlertProvider template={AlertTemplate} {...options}>
   //   <StoreProvider>
