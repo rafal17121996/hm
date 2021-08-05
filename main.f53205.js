@@ -35580,7 +35580,9 @@ var App = () => {
   // </AlertProvider>
   react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
-  }, options), /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
+  }, options), /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(BrowserRouter, {
+    basename: "/react"
+  }, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
     path: "/:item"
   }, /*#__PURE__*/react.createElement(Details_Details, null)), /*#__PURE__*/react.createElement(Route, {
     path: "/xxx"
