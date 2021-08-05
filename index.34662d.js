@@ -22095,22 +22095,7 @@ module.exports = warning;
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
@@ -35523,7 +35508,7 @@ var options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
   timeout: 5000,
-  offset: '30px',
+  offset: "30px",
   // you can also just use 'scale'
   transition: transitions.SCALE,
   containerStyle: {
@@ -35567,7 +35552,24 @@ var App = () => {
   }), /*#__PURE__*/react.createElement(Route, {
     path: "/",
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  })))))));
+  }))))))) // <AlertProvider template={AlertTemplate} {...options}>
+  //   <StoreProvider>
+  //   <Router>
+  //     <Switch>
+  //       <Route path="/about">
+  //         <Details />
+  //       </Route>
+  //       <Route path="/topics">
+  //         <Map />
+  //       </Route>
+  //       <Route path="/">
+  //         <Home />
+  //       </Route>
+  //     </Switch>
+  // </Router>
+  //   </StoreProvider>
+  // </AlertProvider>
+  ;
 };
 
 /* harmony default export */ const src_App = (App);
