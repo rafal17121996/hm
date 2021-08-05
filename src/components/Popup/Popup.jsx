@@ -19,7 +19,6 @@ const Popup = ({ open, onClose }) => {
   if (!open) return null;
 
   const [guests, setGuests] = useState([]);
-  const [guests2, setGuests2] = useState([]);
   const alert = useAlert()
 
 
@@ -36,11 +35,12 @@ const Popup = ({ open, onClose }) => {
         if (response.status == 200) {
           setGuests(response.data);
         } else {
-          // alert.show('Coś poszło nie tak')
+          alert.show('Coś poszło nie tak')
         }
       })
       .catch((error) => {
         console.log('error');
+        alert.show('Coś poszło nie tak')
       });
   };
 
@@ -62,9 +62,10 @@ const Popup = ({ open, onClose }) => {
     };
   }, []);
   const handleStatus = (number, item) => {
+    const id = guests.findIndex(element => element.guestId === item.guestId);
     let config = {
       headers: {
-        ApiKij: process.env.apiKe,
+        ApiKij: process.env.apiKey,
       },
     };
 
@@ -86,13 +87,10 @@ const Popup = ({ open, onClose }) => {
         config
       )
       .then((response) => {
-        console.log(response.status);
         if (response.status == 200) {
           alert.show('Dziękujemy za informację')
           let newArray = [...guests]  ;
-          newArray[0].decisionStatus = number
-          console.log(newArray)
-          console.log(guests)
+          newArray[id].decisionStatus = number
           setGuests(
             newArray
           )
@@ -102,6 +100,7 @@ const Popup = ({ open, onClose }) => {
       })
       .catch((error) => {
         console.log(error);
+        alert.show('Coś poszło nie tak :(')
       });
   };
 

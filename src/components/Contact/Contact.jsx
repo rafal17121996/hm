@@ -4,6 +4,8 @@ import bemCssModules from "bem-css-modules";
 import { default as ContactStyles } from "./Contact.module.scss";
 import img from "../../assets/morda1.jpg";
 import img1 from "../../assets/she1.jpg";
+import img2 from "../../assets/IMG-3005 (1).jpg";
+import img3 from "../../assets/IMG-3242 (1).jpg";
 import img4 from "../../assets/he1.jpg";
 import { StoreContext } from "../../store/StoreProvider";
 
@@ -16,7 +18,7 @@ const Contact = () => {
       {isMobile ? (
         <div className={style("wrapper")}>
           <div className={style("section")}>
-            <img className={style("main-img")} src={img} />
+            <img className={style("main-img")} src={img2} />
             <p>hanna orlikowska</p>
             <p className={style("phone")}>
               <a href="tel:696-192-338">Tel. 696 192 338</a>
@@ -26,7 +28,7 @@ const Contact = () => {
             </p>
           </div>
           <div className={style("section")}>
-            <img className={style("main-img")} src={img} />
+            <img className={style("main-img")} src={img3} />
             <p>miłosz rzeźnik</p>
             <p className={style("phone")}>
               <a href="tel:512-514-374">Tel. 512 514 374</a>
@@ -69,7 +71,7 @@ const Contact = () => {
             </p>
           </div>
           <div className={style("section")}>
-            <img className={style("main-img")} src={img} />
+            <img className={style("main-img")} src={img2} />
             <p>hanna orlikowska</p>
             <p className={style("phone")}>
               <a href="tel:696-192-338">Tel. 696 192 338</a>
@@ -79,7 +81,7 @@ const Contact = () => {
             </p>
           </div>
           <div className={style("section")}>
-            <img className={style("main-img")} src={img} />
+            <img className={style("main-img")} src={img3} />
             <p>miłosz rzeźnik</p>
             <p className={style("phone")}>
               <a href="tel:512-514-374">Tel. 512 514 374</a>
