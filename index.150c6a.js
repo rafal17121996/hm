@@ -23254,6 +23254,21 @@ var useSelector = /*#__PURE__*/(/* unused pure expression or super */ null && (c
 
 setBatch(react_dom.unstable_batchedUpdates);
 
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+function objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
 function _setPrototypeOf(o, p) {
   _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
@@ -23270,6 +23285,1380 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype.constructor = subClass;
   _setPrototypeOf(subClass, superClass);
 }
+;// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
+/* harmony default export */ const config = ({
+  disabled: false
+});
+;// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
+
+/* harmony default export */ const TransitionGroupContext = (react.createContext(null));
+;// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/Transition.js
+
+
+
+
+
+
+
+
+var UNMOUNTED = 'unmounted';
+var EXITED = 'exited';
+var ENTERING = 'entering';
+var ENTERED = 'entered';
+var EXITING = 'exiting';
+/**
+ * The Transition component lets you describe a transition from one component
+ * state to another _over time_ with a simple declarative API. Most commonly
+ * it's used to animate the mounting and unmounting of a component, but can also
+ * be used to describe in-place transition states as well.
+ *
+ * ---
+ *
+ * **Note**: `Transition` is a platform-agnostic base component. If you're using
+ * transitions in CSS, you'll probably want to use
+ * [`CSSTransition`](https://reactcommunity.org/react-transition-group/css-transition)
+ * instead. It inherits all the features of `Transition`, but contains
+ * additional features necessary to play nice with CSS transitions (hence the
+ * name of the component).
+ *
+ * ---
+ *
+ * By default the `Transition` component does not alter the behavior of the
+ * component it renders, it only tracks "enter" and "exit" states for the
+ * components. It's up to you to give meaning and effect to those states. For
+ * example we can add styles to a component when it enters or exits:
+ *
+ * ```jsx
+ * import { Transition } from 'react-transition-group';
+ *
+ * const duration = 300;
+ *
+ * const defaultStyle = {
+ *   transition: `opacity ${duration}ms ease-in-out`,
+ *   opacity: 0,
+ * }
+ *
+ * const transitionStyles = {
+ *   entering: { opacity: 1 },
+ *   entered:  { opacity: 1 },
+ *   exiting:  { opacity: 0 },
+ *   exited:  { opacity: 0 },
+ * };
+ *
+ * const Fade = ({ in: inProp }) => (
+ *   <Transition in={inProp} timeout={duration}>
+ *     {state => (
+ *       <div style={{
+ *         ...defaultStyle,
+ *         ...transitionStyles[state]
+ *       }}>
+ *         I'm a fade Transition!
+ *       </div>
+ *     )}
+ *   </Transition>
+ * );
+ * ```
+ *
+ * There are 4 main states a Transition can be in:
+ *  - `'entering'`
+ *  - `'entered'`
+ *  - `'exiting'`
+ *  - `'exited'`
+ *
+ * Transition state is toggled via the `in` prop. When `true` the component
+ * begins the "Enter" stage. During this stage, the component will shift from
+ * its current transition state, to `'entering'` for the duration of the
+ * transition and then to the `'entered'` stage once it's complete. Let's take
+ * the following example (we'll use the
+ * [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook):
+ *
+ * ```jsx
+ * function App() {
+ *   const [inProp, setInProp] = useState(false);
+ *   return (
+ *     <div>
+ *       <Transition in={inProp} timeout={500}>
+ *         {state => (
+ *           // ...
+ *         )}
+ *       </Transition>
+ *       <button onClick={() => setInProp(true)}>
+ *         Click to Enter
+ *       </button>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
+ * When the button is clicked the component will shift to the `'entering'` state
+ * and stay there for 500ms (the value of `timeout`) before it finally switches
+ * to `'entered'`.
+ *
+ * When `in` is `false` the same thing happens except the state moves from
+ * `'exiting'` to `'exited'`.
+ */
+
+var Transition = /*#__PURE__*/function (_React$Component) {
+  _inheritsLoose(Transition, _React$Component);
+
+  function Transition(props, context) {
+    var _this;
+
+    _this = _React$Component.call(this, props, context) || this;
+    var parentGroup = context; // In the context of a TransitionGroup all enters are really appears
+
+    var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
+    var initialStatus;
+    _this.appearStatus = null;
+
+    if (props.in) {
+      if (appear) {
+        initialStatus = EXITED;
+        _this.appearStatus = ENTERING;
+      } else {
+        initialStatus = ENTERED;
+      }
+    } else {
+      if (props.unmountOnExit || props.mountOnEnter) {
+        initialStatus = UNMOUNTED;
+      } else {
+        initialStatus = EXITED;
+      }
+    }
+
+    _this.state = {
+      status: initialStatus
+    };
+    _this.nextCallback = null;
+    return _this;
+  }
+
+  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
+    var nextIn = _ref.in;
+
+    if (nextIn && prevState.status === UNMOUNTED) {
+      return {
+        status: EXITED
+      };
+    }
+
+    return null;
+  } // getSnapshotBeforeUpdate(prevProps) {
+  //   let nextStatus = null
+  //   if (prevProps !== this.props) {
+  //     const { status } = this.state
+  //     if (this.props.in) {
+  //       if (status !== ENTERING && status !== ENTERED) {
+  //         nextStatus = ENTERING
+  //       }
+  //     } else {
+  //       if (status === ENTERING || status === ENTERED) {
+  //         nextStatus = EXITING
+  //       }
+  //     }
+  //   }
+  //   return { nextStatus }
+  // }
+  ;
+
+  var _proto = Transition.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.updateStatus(true, this.appearStatus);
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var nextStatus = null;
+
+    if (prevProps !== this.props) {
+      var status = this.state.status;
+
+      if (this.props.in) {
+        if (status !== ENTERING && status !== ENTERED) {
+          nextStatus = ENTERING;
+        }
+      } else {
+        if (status === ENTERING || status === ENTERED) {
+          nextStatus = EXITING;
+        }
+      }
+    }
+
+    this.updateStatus(false, nextStatus);
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.cancelNextCallback();
+  };
+
+  _proto.getTimeouts = function getTimeouts() {
+    var timeout = this.props.timeout;
+    var exit, enter, appear;
+    exit = enter = appear = timeout;
+
+    if (timeout != null && typeof timeout !== 'number') {
+      exit = timeout.exit;
+      enter = timeout.enter; // TODO: remove fallback for next major
+
+      appear = timeout.appear !== undefined ? timeout.appear : enter;
+    }
+
+    return {
+      exit: exit,
+      enter: enter,
+      appear: appear
+    };
+  };
+
+  _proto.updateStatus = function updateStatus(mounting, nextStatus) {
+    if (mounting === void 0) {
+      mounting = false;
+    }
+
+    if (nextStatus !== null) {
+      // nextStatus will always be ENTERING or EXITING.
+      this.cancelNextCallback();
+
+      if (nextStatus === ENTERING) {
+        this.performEnter(mounting);
+      } else {
+        this.performExit();
+      }
+    } else if (this.props.unmountOnExit && this.state.status === EXITED) {
+      this.setState({
+        status: UNMOUNTED
+      });
+    }
+  };
+
+  _proto.performEnter = function performEnter(mounting) {
+    var _this2 = this;
+
+    var enter = this.props.enter;
+    var appearing = this.context ? this.context.isMounting : mounting;
+
+    var _ref2 = this.props.nodeRef ? [appearing] : [react_dom.findDOMNode(this), appearing],
+        maybeNode = _ref2[0],
+        maybeAppearing = _ref2[1];
+
+    var timeouts = this.getTimeouts();
+    var enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
+    // if we are mounting and running this it means appear _must_ be set
+
+    if (!mounting && !enter || config.disabled) {
+      this.safeSetState({
+        status: ENTERED
+      }, function () {
+        _this2.props.onEntered(maybeNode);
+      });
+      return;
+    }
+
+    this.props.onEnter(maybeNode, maybeAppearing);
+    this.safeSetState({
+      status: ENTERING
+    }, function () {
+      _this2.props.onEntering(maybeNode, maybeAppearing);
+
+      _this2.onTransitionEnd(enterTimeout, function () {
+        _this2.safeSetState({
+          status: ENTERED
+        }, function () {
+          _this2.props.onEntered(maybeNode, maybeAppearing);
+        });
+      });
+    });
+  };
+
+  _proto.performExit = function performExit() {
+    var _this3 = this;
+
+    var exit = this.props.exit;
+    var timeouts = this.getTimeouts();
+    var maybeNode = this.props.nodeRef ? undefined : react_dom.findDOMNode(this); // no exit animation skip right to EXITED
+
+    if (!exit || config.disabled) {
+      this.safeSetState({
+        status: EXITED
+      }, function () {
+        _this3.props.onExited(maybeNode);
+      });
+      return;
+    }
+
+    this.props.onExit(maybeNode);
+    this.safeSetState({
+      status: EXITING
+    }, function () {
+      _this3.props.onExiting(maybeNode);
+
+      _this3.onTransitionEnd(timeouts.exit, function () {
+        _this3.safeSetState({
+          status: EXITED
+        }, function () {
+          _this3.props.onExited(maybeNode);
+        });
+      });
+    });
+  };
+
+  _proto.cancelNextCallback = function cancelNextCallback() {
+    if (this.nextCallback !== null) {
+      this.nextCallback.cancel();
+      this.nextCallback = null;
+    }
+  };
+
+  _proto.safeSetState = function safeSetState(nextState, callback) {
+    // This shouldn't be necessary, but there are weird race conditions with
+    // setState callbacks and unmounting in testing, so always make sure that
+    // we can cancel any pending setState callbacks after we unmount.
+    callback = this.setNextCallback(callback);
+    this.setState(nextState, callback);
+  };
+
+  _proto.setNextCallback = function setNextCallback(callback) {
+    var _this4 = this;
+
+    var active = true;
+
+    this.nextCallback = function (event) {
+      if (active) {
+        active = false;
+        _this4.nextCallback = null;
+        callback(event);
+      }
+    };
+
+    this.nextCallback.cancel = function () {
+      active = false;
+    };
+
+    return this.nextCallback;
+  };
+
+  _proto.onTransitionEnd = function onTransitionEnd(timeout, handler) {
+    this.setNextCallback(handler);
+    var node = this.props.nodeRef ? this.props.nodeRef.current : react_dom.findDOMNode(this);
+    var doesNotHaveTimeoutOrListener = timeout == null && !this.props.addEndListener;
+
+    if (!node || doesNotHaveTimeoutOrListener) {
+      setTimeout(this.nextCallback, 0);
+      return;
+    }
+
+    if (this.props.addEndListener) {
+      var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node, this.nextCallback],
+          maybeNode = _ref3[0],
+          maybeNextCallback = _ref3[1];
+
+      this.props.addEndListener(maybeNode, maybeNextCallback);
+    }
+
+    if (timeout != null) {
+      setTimeout(this.nextCallback, timeout);
+    }
+  };
+
+  _proto.render = function render() {
+    var status = this.state.status;
+
+    if (status === UNMOUNTED) {
+      return null;
+    }
+
+    var _this$props = this.props,
+        children = _this$props.children,
+        _in = _this$props.in,
+        _mountOnEnter = _this$props.mountOnEnter,
+        _unmountOnExit = _this$props.unmountOnExit,
+        _appear = _this$props.appear,
+        _enter = _this$props.enter,
+        _exit = _this$props.exit,
+        _timeout = _this$props.timeout,
+        _addEndListener = _this$props.addEndListener,
+        _onEnter = _this$props.onEnter,
+        _onEntering = _this$props.onEntering,
+        _onEntered = _this$props.onEntered,
+        _onExit = _this$props.onExit,
+        _onExiting = _this$props.onExiting,
+        _onExited = _this$props.onExited,
+        _nodeRef = _this$props.nodeRef,
+        childProps = objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
+
+    return (
+      /*#__PURE__*/
+      // allows for nested Transitions
+      react.createElement(TransitionGroupContext.Provider, {
+        value: null
+      }, typeof children === 'function' ? children(status, childProps) : react.cloneElement(react.Children.only(children), childProps))
+    );
+  };
+
+  return Transition;
+}(react.Component);
+
+Transition.contextType = TransitionGroupContext;
+Transition.propTypes =  false ? 0 : {}; // Name the function so it is clearer in the documentation
+
+function noop() {}
+
+Transition.defaultProps = {
+  in: false,
+  mountOnEnter: false,
+  unmountOnExit: false,
+  appear: false,
+  enter: true,
+  exit: true,
+  onEnter: noop,
+  onEntering: noop,
+  onEntered: noop,
+  onExit: noop,
+  onExiting: noop,
+  onExited: noop
+};
+Transition.UNMOUNTED = UNMOUNTED;
+Transition.EXITED = EXITED;
+Transition.ENTERING = ENTERING;
+Transition.ENTERED = ENTERED;
+Transition.EXITING = EXITING;
+/* harmony default export */ const esm_Transition = (Transition);
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+;// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/utils/ChildMapping.js
+
+/**
+ * Given `this.props.children`, return an object mapping key to child.
+ *
+ * @param {*} children `this.props.children`
+ * @return {object} Mapping of key to child
+ */
+
+function getChildMapping(children, mapFn) {
+  var mapper = function mapper(child) {
+    return mapFn && (0,react.isValidElement)(child) ? mapFn(child) : child;
+  };
+
+  var result = Object.create(null);
+  if (children) react.Children.map(children, function (c) {
+    return c;
+  }).forEach(function (child) {
+    // run the map function here instead so that the key is the computed one
+    result[child.key] = mapper(child);
+  });
+  return result;
+}
+/**
+ * When you're adding or removing children some may be added or removed in the
+ * same render pass. We want to show *both* since we want to simultaneously
+ * animate elements in and out. This function takes a previous set of keys
+ * and a new set of keys and merges them with its best guess of the correct
+ * ordering. In the future we may expose some of the utilities in
+ * ReactMultiChild to make this easy, but for now React itself does not
+ * directly have this concept of the union of prevChildren and nextChildren
+ * so we implement it here.
+ *
+ * @param {object} prev prev children as returned from
+ * `ReactTransitionChildMapping.getChildMapping()`.
+ * @param {object} next next children as returned from
+ * `ReactTransitionChildMapping.getChildMapping()`.
+ * @return {object} a key set that contains all keys in `prev` and all keys
+ * in `next` in a reasonable order.
+ */
+
+function mergeChildMappings(prev, next) {
+  prev = prev || {};
+  next = next || {};
+
+  function getValueForKey(key) {
+    return key in next ? next[key] : prev[key];
+  } // For each key of `next`, the list of keys to insert before that key in
+  // the combined list
+
+
+  var nextKeysPending = Object.create(null);
+  var pendingKeys = [];
+
+  for (var prevKey in prev) {
+    if (prevKey in next) {
+      if (pendingKeys.length) {
+        nextKeysPending[prevKey] = pendingKeys;
+        pendingKeys = [];
+      }
+    } else {
+      pendingKeys.push(prevKey);
+    }
+  }
+
+  var i;
+  var childMapping = {};
+
+  for (var nextKey in next) {
+    if (nextKeysPending[nextKey]) {
+      for (i = 0; i < nextKeysPending[nextKey].length; i++) {
+        var pendingNextKey = nextKeysPending[nextKey][i];
+        childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
+      }
+    }
+
+    childMapping[nextKey] = getValueForKey(nextKey);
+  } // Finally, add the keys which didn't appear before any key in `next`
+
+
+  for (i = 0; i < pendingKeys.length; i++) {
+    childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
+  }
+
+  return childMapping;
+}
+
+function getProp(child, prop, props) {
+  return props[prop] != null ? props[prop] : child.props[prop];
+}
+
+function getInitialChildMapping(props, onExited) {
+  return getChildMapping(props.children, function (child) {
+    return (0,react.cloneElement)(child, {
+      onExited: onExited.bind(null, child),
+      in: true,
+      appear: getProp(child, 'appear', props),
+      enter: getProp(child, 'enter', props),
+      exit: getProp(child, 'exit', props)
+    });
+  });
+}
+function getNextChildMapping(nextProps, prevChildMapping, onExited) {
+  var nextChildMapping = getChildMapping(nextProps.children);
+  var children = mergeChildMappings(prevChildMapping, nextChildMapping);
+  Object.keys(children).forEach(function (key) {
+    var child = children[key];
+    if (!(0,react.isValidElement)(child)) return;
+    var hasPrev = (key in prevChildMapping);
+    var hasNext = (key in nextChildMapping);
+    var prevChild = prevChildMapping[key];
+    var isLeaving = (0,react.isValidElement)(prevChild) && !prevChild.props.in; // item is new (entering)
+
+    if (hasNext && (!hasPrev || isLeaving)) {
+      // console.log('entering', key)
+      children[key] = (0,react.cloneElement)(child, {
+        onExited: onExited.bind(null, child),
+        in: true,
+        exit: getProp(child, 'exit', nextProps),
+        enter: getProp(child, 'enter', nextProps)
+      });
+    } else if (!hasNext && hasPrev && !isLeaving) {
+      // item is old (exiting)
+      // console.log('leaving', key)
+      children[key] = (0,react.cloneElement)(child, {
+        in: false
+      });
+    } else if (hasNext && hasPrev && (0,react.isValidElement)(prevChild)) {
+      // item hasn't changed transition states
+      // copy over the last transition props;
+      // console.log('unchanged', key)
+      children[key] = (0,react.cloneElement)(child, {
+        onExited: onExited.bind(null, child),
+        in: prevChild.props.in,
+        exit: getProp(child, 'exit', nextProps),
+        enter: getProp(child, 'enter', nextProps)
+      });
+    }
+  });
+  return children;
+}
+;// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js
+
+
+
+
+
+
+
+
+
+var values = Object.values || function (obj) {
+  return Object.keys(obj).map(function (k) {
+    return obj[k];
+  });
+};
+
+var defaultProps = {
+  component: 'div',
+  childFactory: function childFactory(child) {
+    return child;
+  }
+};
+/**
+ * The `<TransitionGroup>` component manages a set of transition components
+ * (`<Transition>` and `<CSSTransition>`) in a list. Like with the transition
+ * components, `<TransitionGroup>` is a state machine for managing the mounting
+ * and unmounting of components over time.
+ *
+ * Consider the example below. As items are removed or added to the TodoList the
+ * `in` prop is toggled automatically by the `<TransitionGroup>`.
+ *
+ * Note that `<TransitionGroup>`  does not define any animation behavior!
+ * Exactly _how_ a list item animates is up to the individual transition
+ * component. This means you can mix and match animations across different list
+ * items.
+ */
+
+var TransitionGroup = /*#__PURE__*/function (_React$Component) {
+  _inheritsLoose(TransitionGroup, _React$Component);
+
+  function TransitionGroup(props, context) {
+    var _this;
+
+    _this = _React$Component.call(this, props, context) || this;
+
+    var handleExited = _this.handleExited.bind(_assertThisInitialized(_this)); // Initial children should all be entering, dependent on appear
+
+
+    _this.state = {
+      contextValue: {
+        isMounting: true
+      },
+      handleExited: handleExited,
+      firstRender: true
+    };
+    return _this;
+  }
+
+  var _proto = TransitionGroup.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.mounted = true;
+    this.setState({
+      contextValue: {
+        isMounting: false
+      }
+    });
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.mounted = false;
+  };
+
+  TransitionGroup.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
+    var prevChildMapping = _ref.children,
+        handleExited = _ref.handleExited,
+        firstRender = _ref.firstRender;
+    return {
+      children: firstRender ? getInitialChildMapping(nextProps, handleExited) : getNextChildMapping(nextProps, prevChildMapping, handleExited),
+      firstRender: false
+    };
+  } // node is `undefined` when user provided `nodeRef` prop
+  ;
+
+  _proto.handleExited = function handleExited(child, node) {
+    var currentChildMapping = getChildMapping(this.props.children);
+    if (child.key in currentChildMapping) return;
+
+    if (child.props.onExited) {
+      child.props.onExited(node);
+    }
+
+    if (this.mounted) {
+      this.setState(function (state) {
+        var children = extends_extends({}, state.children);
+
+        delete children[child.key];
+        return {
+          children: children
+        };
+      });
+    }
+  };
+
+  _proto.render = function render() {
+    var _this$props = this.props,
+        Component = _this$props.component,
+        childFactory = _this$props.childFactory,
+        props = objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(_this$props, ["component", "childFactory"]);
+
+    var contextValue = this.state.contextValue;
+    var children = values(this.state.children).map(childFactory);
+    delete props.appear;
+    delete props.enter;
+    delete props.exit;
+
+    if (Component === null) {
+      return /*#__PURE__*/react.createElement(TransitionGroupContext.Provider, {
+        value: contextValue
+      }, children);
+    }
+
+    return /*#__PURE__*/react.createElement(TransitionGroupContext.Provider, {
+      value: contextValue
+    }, /*#__PURE__*/react.createElement(Component, props, children));
+  };
+
+  return TransitionGroup;
+}(react.Component);
+
+TransitionGroup.propTypes =  false ? 0 : {};
+TransitionGroup.defaultProps = defaultProps;
+/* harmony default export */ const esm_TransitionGroup = (TransitionGroup);
+;// CONCATENATED MODULE: ./node_modules/react-alert/dist/esm/react-alert.js
+
+
+
+
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function react_alert_extends() {
+  react_alert_extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return react_alert_extends.apply(this, arguments);
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function react_alert_objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = react_alert_objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+var react_alert_Context = /*#__PURE__*/(0,react.createContext)();
+
+var positions = {
+  TOP_LEFT: 'top left',
+  TOP_CENTER: 'top center',
+  TOP_RIGHT: 'top right',
+  MIDDLE_LEFT: 'middle left',
+  MIDDLE: 'middle',
+  MIDDLE_RIGHT: 'middle right',
+  BOTTOM_LEFT: 'bottom left',
+  BOTTOM_CENTER: 'bottom center',
+  BOTTOM_RIGHT: 'bottom right'
+};
+var types = {
+  INFO: 'info',
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
+var transitions = {
+  FADE: 'fade',
+  SCALE: 'scale'
+};
+
+var getStyles = function getStyles(position) {
+  var initialStyles = {
+    left: 0,
+    position: 'fixed',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    width: '100%',
+    pointerEvents: 'none'
+  };
+
+  switch (position) {
+    case positions.TOP_LEFT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        top: 0,
+        alignItems: 'flex-start'
+      });
+
+    case positions.TOP_CENTER:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        top: 0
+      });
+
+    case positions.TOP_RIGHT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        top: 0,
+        alignItems: 'flex-end'
+      });
+
+    case positions.MIDDLE_LEFT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        top: '50%',
+        alignItems: 'flex-start'
+      });
+
+    case positions.MIDDLE:
+      {
+        return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+          top: '50%'
+        });
+      }
+
+    case positions.MIDDLE_RIGHT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        top: '50%',
+        alignItems: 'flex-end'
+      });
+
+    case positions.BOTTOM_LEFT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        bottom: 0,
+        alignItems: 'flex-start'
+      });
+
+    case positions.BOTTOM_CENTER:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        bottom: 0
+      });
+
+    case positions.BOTTOM_RIGHT:
+      return _objectSpread2(_objectSpread2({}, initialStyles), {}, {
+        bottom: 0,
+        alignItems: 'flex-end'
+      });
+
+    default:
+      {
+        return initialStyles;
+      }
+  }
+};
+
+var Wrapper = function Wrapper(_ref) {
+  var children = _ref.children,
+      _ref$options = _ref.options,
+      position = _ref$options.position,
+      containerStyle = _ref$options.containerStyle,
+      props = _objectWithoutProperties(_ref, ["children", "options"]);
+
+  var styles = (0,react.useMemo)(function () {
+    return getStyles(position);
+  }, [position]);
+  return children.length > 0 && /*#__PURE__*/react.createElement("div", react_alert_extends({
+    style: _objectSpread2(_objectSpread2({}, styles), containerStyle)
+  }, props), children);
+};
+
+var _defaultStyle, _transitionStyles;
+var duration = 250;
+var defaultStyle = (_defaultStyle = {}, _defineProperty(_defaultStyle, transitions.FADE, {
+  transition: "opacity ".concat(duration, "ms ease"),
+  opacity: 0
+}), _defineProperty(_defaultStyle, transitions.SCALE, {
+  transform: 'scale(1)',
+  transition: "all ".concat(duration, "ms ease-in-out")
+}), _defaultStyle);
+var transitionStyles = (_transitionStyles = {}, _defineProperty(_transitionStyles, transitions.FADE, {
+  entering: {
+    opacity: 0
+  },
+  entered: {
+    opacity: 1
+  }
+}), _defineProperty(_transitionStyles, transitions.SCALE, {
+  entering: {
+    transform: 'scale(0)'
+  },
+  entered: {
+    transform: 'scale(1)'
+  },
+  exiting: {
+    transform: 'scale(0)'
+  },
+  exited: {
+    transform: 'scale(1)'
+  }
+}), _transitionStyles);
+
+var Transtion = function Transtion(_ref) {
+  var children = _ref.children,
+      type = _ref.type,
+      props = _objectWithoutProperties(_ref, ["children", "type"]);
+
+  var ref = (0,react.useRef)(null);
+  return (/*#__PURE__*/react.createElement(esm_Transition, react_alert_extends({
+      nodeRef: ref
+    }, props, {
+      timeout: duration
+    }), function (state) {
+      return (/*#__PURE__*/react.createElement("div", {
+          ref: ref,
+          style: _objectSpread2(_objectSpread2({}, defaultStyle[type]), transitionStyles[type][state])
+        }, children)
+      );
+    })
+  );
+};
+
+var groupBy = function groupBy(array, fn) {
+  return array.reduce(function (result, item) {
+    var key = fn(item);
+    if (!result[key]) result[key] = [];
+    result[key].push(item);
+    return result;
+  }, {});
+};
+
+var react_alert_Provider = function Provider(_ref) {
+  var children = _ref.children,
+      offset = _ref.offset,
+      position = _ref.position,
+      timeout = _ref.timeout,
+      type = _ref.type,
+      transition = _ref.transition,
+      containerStyle = _ref.containerStyle,
+      AlertComponent = _ref.template,
+      Context = _ref.context,
+      props = _objectWithoutProperties(_ref, ["children", "offset", "position", "timeout", "type", "transition", "containerStyle", "template", "context"]);
+
+  var root = (0,react.useRef)(null);
+  var alertContext = (0,react.useRef)(null);
+  var timersId = (0,react.useRef)([]);
+
+  var _useState = (0,react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      alerts = _useState2[0],
+      setAlerts = _useState2[1];
+
+  (0,react.useEffect)(function () {
+    root.current = document.createElement('div');
+    root.current.id = '__react-alert__';
+    document.body.appendChild(root.current);
+    var timersIdRef = timersId.current;
+    return function () {
+      timersIdRef.forEach(clearTimeout);
+      if (root.current) document.body.removeChild(root.current);
+    };
+  }, []);
+  var remove = (0,react.useCallback)(function (alert) {
+    setAlerts(function (currentAlerts) {
+      var lengthBeforeRemove = currentAlerts.length;
+      var filteredAlerts = currentAlerts.filter(function (a) {
+        return a.id !== alert.id;
+      });
+
+      if (lengthBeforeRemove > filteredAlerts.length && alert.options.onClose) {
+        alert.options.onClose();
+      }
+
+      return filteredAlerts;
+    });
+  }, []);
+  var removeAll = (0,react.useCallback)(function () {
+    alertContext.current.alerts.forEach(remove);
+  }, [remove]);
+  var show = (0,react.useCallback)(function () {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var id = Math.random().toString(36).substr(2, 9);
+
+    var alertOptions = _objectSpread2({
+      position: options.position || position,
+      timeout: timeout,
+      type: type
+    }, options);
+
+    var alert = {
+      id: id,
+      message: message,
+      options: alertOptions
+    };
+
+    alert.close = function () {
+      return remove(alert);
+    };
+
+    if (alert.options.timeout) {
+      var timerId = setTimeout(function () {
+        remove(alert);
+        timersId.current.splice(timersId.current.indexOf(timerId), 1);
+      }, alert.options.timeout);
+      timersId.current.push(timerId);
+    }
+
+    setAlerts(function (state) {
+      return state.concat(alert);
+    });
+    if (alert.options.onOpen) alert.options.onOpen();
+    return alert;
+  }, [position, remove, timeout, type]);
+  var success = (0,react.useCallback)(function () {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    options.type = types.SUCCESS;
+    return show(message, options);
+  }, [show]);
+  var error = (0,react.useCallback)(function () {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    options.type = types.ERROR;
+    return show(message, options);
+  }, [show]);
+  var info = (0,react.useCallback)(function () {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    options.type = types.INFO;
+    return show(message, options);
+  }, [show]);
+  alertContext.current = {
+    alerts: alerts,
+    show: show,
+    remove: remove,
+    removeAll: removeAll,
+    success: success,
+    error: error,
+    info: info
+  };
+  var alertsByPosition = groupBy(alerts, function (alert) {
+    return alert.options.position;
+  });
+  return (/*#__PURE__*/react.createElement(Context.Provider, {
+      value: alertContext
+    }, children, root.current && /*#__PURE__*/(0,react_dom.createPortal)( /*#__PURE__*/react.createElement(react.Fragment, null, Object.keys(positions).map(function (key) {
+      var position = positions[key];
+      return (/*#__PURE__*/react.createElement(esm_TransitionGroup, react_alert_extends({
+          appear: true,
+          key: position,
+          options: {
+            position: position,
+            containerStyle: containerStyle
+          },
+          component: Wrapper
+        }, props), alertsByPosition[position] ? alertsByPosition[position].map(function (alert) {
+          return (/*#__PURE__*/react.createElement(Transtion, {
+              type: transition,
+              key: alert.id
+            }, /*#__PURE__*/react.createElement(AlertComponent, react_alert_extends({
+              style: {
+                margin: offset,
+                pointerEvents: 'all'
+              }
+            }, alert)))
+          );
+        }) : null)
+      );
+    })), root.current))
+  );
+};
+
+react_alert_Provider.propTypes = {
+  offset: (prop_types_default()).string,
+  position: prop_types_default().oneOf(Object.keys(positions).map(function (position) {
+    return positions[position];
+  })),
+  timeout: (prop_types_default()).number,
+  type: prop_types_default().oneOf(Object.keys(types).map(function (type) {
+    return types[type];
+  })),
+  transition: prop_types_default().oneOf(Object.keys(transitions).map(function (transition) {
+    return transitions[transition];
+  })),
+  containerStyle: (prop_types_default()).object,
+  template: prop_types_default().oneOfType([(prop_types_default()).element, (prop_types_default()).func, (prop_types_default()).elementType]).isRequired,
+  context: prop_types_default().shape({
+    Provider: (prop_types_default()).object,
+    Consumer: (prop_types_default()).object
+  })
+};
+react_alert_Provider.defaultProps = {
+  offset: '10px',
+  position: positions.TOP_CENTER,
+  timeout: 0,
+  type: types.INFO,
+  transition: transitions.FADE,
+  containerStyle: {
+    zIndex: 100
+  },
+  context: react_alert_Context
+};
+
+var useAlert = function useAlert(Context$1) {
+  var alertContext = (0,react.useContext)(Context$1 || react_alert_Context);
+  var alert = (0,react.useMemo)(function () {
+    return alertContext.current;
+  }, [alertContext]);
+  return alert;
+};
+
+var withAlert = function withAlert() {
+  var Context$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : react_alert_Context;
+  return function (WrappedComponent) {
+    var WithAlert = function WithAlert(props, forwardedRef) {
+      return (/*#__PURE__*/React.createElement(Context$1.Consumer, null, function (alert) {
+          return (/*#__PURE__*/React.createElement(WrappedComponent, react_alert_extends({
+              ref: forwardedRef
+            }, props, {
+              alert: alert.current
+            }))
+          );
+        })
+      );
+    };
+
+    WithAlert.displayName = "WithAlert(".concat(WrappedComponent.displayName || WrappedComponent.name || 'Component', ")");
+    return (/*#__PURE__*/React.forwardRef(WithAlert)
+    );
+  };
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/react-alert-template-basic/dist/esm/react-alert-template-basic.js
+
+
+var BaseIcon = function BaseIcon(_ref) {
+  var color = _ref.color,
+      _ref$pushRight = _ref.pushRight,
+      pushRight = _ref$pushRight === undefined ? true : _ref$pushRight,
+      children = _ref.children;
+  return react.createElement(
+    'svg',
+    {
+      xmlns: 'http://www.w3.org/2000/svg',
+      width: '24',
+      height: '24',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: color,
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      style: { marginRight: pushRight ? '20px' : '0', minWidth: 24 }
+    },
+    children
+  );
+};
+
+var InfoIcon = function InfoIcon() {
+  return react.createElement(
+    BaseIcon,
+    { color: '#2E9AFE' },
+    react.createElement('circle', { cx: '12', cy: '12', r: '10' }),
+    react.createElement('line', { x1: '12', y1: '16', x2: '12', y2: '12' }),
+    react.createElement('line', { x1: '12', y1: '8', x2: '12', y2: '8' })
+  );
+};
+
+var SuccessIcon = function SuccessIcon() {
+  return react.createElement(
+    BaseIcon,
+    { color: '#31B404' },
+    react.createElement('path', { d: 'M22 11.08V12a10 10 0 1 1-5.93-9.14' }),
+    react.createElement('polyline', { points: '22 4 12 14.01 9 11.01' })
+  );
+};
+
+var ErrorIcon = function ErrorIcon() {
+  return react.createElement(
+    BaseIcon,
+    { color: '#FF0040' },
+    react.createElement('circle', { cx: '12', cy: '12', r: '10' }),
+    react.createElement('line', { x1: '12', y1: '8', x2: '12', y2: '12' }),
+    react.createElement('line', { x1: '12', y1: '16', x2: '12', y2: '16' })
+  );
+};
+
+var CloseIcon = function CloseIcon() {
+  return react.createElement(
+    BaseIcon,
+    { color: '#FFFFFF', pushRight: false },
+    react.createElement('line', { x1: '18', y1: '6', x2: '6', y2: '18' }),
+    react.createElement('line', { x1: '6', y1: '6', x2: '18', y2: '18' })
+  );
+};
+
+var react_alert_template_basic_extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var alertStyle = {
+  backgroundColor: '#151515',
+  color: 'white',
+  padding: '10px',
+  textTransform: 'uppercase',
+  borderRadius: '3px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  boxShadow: '0px 2px 2px 2px rgba(0, 0, 0, 0.03)',
+  fontFamily: 'Arial',
+  width: '300px',
+  boxSizing: 'border-box'
+};
+
+var buttonStyle = {
+  marginLeft: '20px',
+  border: 'none',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
+  color: '#FFFFFF'
+};
+
+var AlertTemplate = function AlertTemplate(_ref) {
+  var message = _ref.message,
+      options = _ref.options,
+      style = _ref.style,
+      close = _ref.close;
+
+  return react.createElement(
+    'div',
+    { style: react_alert_template_basic_extends({}, alertStyle, style) },
+    options.type === 'info' && react.createElement(InfoIcon, null),
+    options.type === 'success' && react.createElement(SuccessIcon, null),
+    options.type === 'error' && react.createElement(ErrorIcon, null),
+    react.createElement(
+      'span',
+      { style: { flex: 2 } },
+      message
+    ),
+    react.createElement(
+      'button',
+      { onClick: close, style: buttonStyle },
+      react.createElement(CloseIcon, null)
+    )
+  );
+};
+
+/* harmony default export */ const react_alert_template_basic = (AlertTemplate);
+
 ;// CONCATENATED MODULE: ./node_modules/resolve-pathname/esm/resolve-pathname.js
 function isAbsolute(pathname) {
   return pathname.charAt(0) === '/';
@@ -24462,21 +25851,6 @@ var index = react.createContext || createReactContext;
 // EXTERNAL MODULE: ./node_modules/path-to-regexp/index.js
 var path_to_regexp = __webpack_require__(4779);
 var path_to_regexp_default = /*#__PURE__*/__webpack_require__.n(path_to_regexp);
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-function objectWithoutPropertiesLoose_objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
 ;// CONCATENATED MODULE: ./node_modules/react-router/esm/react-router.js
 
 
@@ -24943,7 +26317,7 @@ function staticHandler(methodName) {
   };
 }
 
-function noop() {}
+function react_router_noop() {}
 /**
  * The public top-level API for a "static" <Router>, so-called because it
  * can't actually change the current location. Instead, it just records
@@ -24975,11 +26349,11 @@ function (_React$Component) {
     };
 
     _this.handleListen = function () {
-      return noop;
+      return react_router_noop;
     };
 
     _this.handleBlock = function () {
-      return noop;
+      return react_router_noop;
     };
 
     return _this;
@@ -25407,8 +26781,8 @@ if (false) { var ariaCurrentType; }
 var bem_css_modules = __webpack_require__(8893);
 // EXTERNAL MODULE: ./node_modules/react-scroll/modules/index.js
 var modules = __webpack_require__(6261);
-;// CONCATENATED MODULE: ./src/assets/219538867_411232146899970_8984585591312915675_n.png
-/* harmony default export */ const _219538867_411232146899970_8984585591312915675_n = (__webpack_require__.p + "d2be771604c5c73f3937ad6c4f50f6f1.png");
+;// CONCATENATED MODULE: ./src/assets/logo.png
+/* harmony default export */ const logo = (__webpack_require__.p + "789983935077224e338f414863d07cf9.png");
 ;// CONCATENATED MODULE: ./src/components/Navbar/MenuItem/MenuItem.jsx
 var MenuItems = [{
   title: 'odliczanie',
@@ -25437,10 +26811,11 @@ var MenuItems = [{
 /* harmony default export */ const assets_close = (__webpack_require__.p + "688f4b6e1c99a5d12489b53e752a05c9.svg");
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__logo-wrapper":"Navbar__logo-wrapper","Navbar__logo-border":"Navbar__logo-border","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","Navbar__icon":"Navbar__icon","Navbar__icon-close":"Navbar__icon-close","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
+/* harmony default export */ const Navbar_module = ({"Navbar":"Navbar","Navbar_hidden":"Navbar_hidden","Navbar__wrapper":"Navbar__wrapper","Navbar__logo":"Navbar__logo","Navbar__logo-wrapper":"Navbar__logo-wrapper","Navbar__logo-border":"Navbar__logo-border","Navbar__title":"Navbar__title","Navbar__nav-menu":"Navbar__nav-menu","Navbar__nav-item":"Navbar__nav-item","Navbar__nav-logo":"Navbar__nav-logo","Navbar__nav-links":"Navbar__nav-links","fa-bars":"fa-bars","Navbar__menu-button":"Navbar__menu-button","Navbar__nav-menu_active":"Navbar__nav-menu_active","Navbar__navbar-logo":"Navbar__navbar-logo","Navbar__icon":"Navbar__icon","Navbar__icon-close":"Navbar__icon-close","fa-times":"fa-times","Navbar__nav-links-mobile":"Navbar__nav-links-mobile","Navbar__flags":"Navbar__flags","scroll-up":"scroll-up","fa-arrow-up":"fa-arrow-up"});
 ;// CONCATENATED MODULE: ./src/components/Navbar/Navbar.jsx
 
 
+ // import img from "../../assets/219538867_411232146899970_8984585591312915675_n.png";
 
 
 
@@ -25508,7 +26883,7 @@ var Navbar = () => {
     className: style("logo-border")
   }, /*#__PURE__*/react.createElement("img", {
     className: style("logo"),
-    src: _219538867_411232146899970_8984585591312915675_n,
+    src: logo,
     alt: ""
   }))), /*#__PURE__*/react.createElement("div", {
     className: style("wrapper")
@@ -25525,12 +26900,16 @@ var Navbar = () => {
     alt: ""
   })), /*#__PURE__*/react.createElement("ul", {
     className: itemStyle
-  }, Items)))));
+  }, isMobile ? /*#__PURE__*/react.createElement("li", null, /*#__PURE__*/react.createElement("img", {
+    className: style("nav-logo"),
+    src: logo,
+    alt: ""
+  })) : null, Items)))));
 };
 
 /* harmony default export */ const Navbar_Navbar = (Navbar);
 ;// CONCATENATED MODULE: ./node_modules/gsap/gsap-core.js
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function gsap_core_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function gsap_core_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
@@ -27455,8 +28834,8 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     _this.smoothChildTiming = !!vars.smoothChildTiming;
     _this.autoRemoveChildren = !!vars.autoRemoveChildren;
     _this._sort = _isNotFalse(vars.sortChildren);
-    _this.parent && _postAddChecks(_this.parent, _assertThisInitialized(_this));
-    vars.scrollTrigger && _scrollTrigger(_assertThisInitialized(_this), vars.scrollTrigger);
+    _this.parent && _postAddChecks(_this.parent, gsap_core_assertThisInitialized(_this));
+    vars.scrollTrigger && _scrollTrigger(gsap_core_assertThisInitialized(_this), vars.scrollTrigger);
     return _this;
   }
 
@@ -28503,7 +29882,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         defaults: defaults || {}
       });
       tl.kill();
-      tl.parent = tl._dp = _assertThisInitialized(_this3);
+      tl.parent = tl._dp = gsap_core_assertThisInitialized(_this3);
       tl._start = 0;
 
       if (keyframes) {
@@ -28542,8 +29921,8 @@ var Tween = /*#__PURE__*/function (_Animation2) {
           staggerVarsToMerge && _merge(copy, staggerVarsToMerge);
           curTarget = parsedTargets[i]; //don't just copy duration or delay because if they're a string or function, we'd end up in an infinite loop because _isFuncOrString() would evaluate as true in the child tweens, entering this loop, etc. So we parse the value straight from vars and default to 0.
 
-          copy.duration = +_parseFuncOrString(duration, _assertThisInitialized(_this3), i, curTarget, parsedTargets);
-          copy.delay = (+_parseFuncOrString(delay, _assertThisInitialized(_this3), i, curTarget, parsedTargets) || 0) - _this3._delay;
+          copy.duration = +_parseFuncOrString(duration, gsap_core_assertThisInitialized(_this3), i, curTarget, parsedTargets);
+          copy.delay = (+_parseFuncOrString(delay, gsap_core_assertThisInitialized(_this3), i, curTarget, parsedTargets) || 0) - _this3._delay;
 
           if (!stagger && l === 1 && copy.delay) {
             // if someone does delay:"random(1, 5)", repeat:-1, for example, the delay shouldn't be inside the repeat.
@@ -28564,23 +29943,23 @@ var Tween = /*#__PURE__*/function (_Animation2) {
     }
 
     if (overwrite === true && !_suppressOverwrites) {
-      _overwritingTween = _assertThisInitialized(_this3);
+      _overwritingTween = gsap_core_assertThisInitialized(_this3);
 
       _globalTimeline.killTweensOf(parsedTargets);
 
       _overwritingTween = 0;
     }
 
-    parent && _postAddChecks(parent, _assertThisInitialized(_this3));
+    parent && _postAddChecks(parent, gsap_core_assertThisInitialized(_this3));
 
-    if (immediateRender || !duration && !keyframes && _this3._start === _round(parent._time) && _isNotFalse(immediateRender) && _hasNoPausedAncestors(_assertThisInitialized(_this3)) && parent.data !== "nested") {
+    if (immediateRender || !duration && !keyframes && _this3._start === _round(parent._time) && _isNotFalse(immediateRender) && _hasNoPausedAncestors(gsap_core_assertThisInitialized(_this3)) && parent.data !== "nested") {
       _this3._tTime = -_tinyNum; //forces a render without having to set the render() "force" parameter to true because we want to allow lazying by default (using the "force" parameter always forces an immediate full render)
 
       _this3.render(Math.max(0, -delay)); //in case delay is negative
 
     }
 
-    scrollTrigger && _scrollTrigger(_assertThisInitialized(_this3), scrollTrigger);
+    scrollTrigger && _scrollTrigger(gsap_core_assertThisInitialized(_this3), scrollTrigger);
     return _this3;
   }
 
@@ -30764,7 +32143,7 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 ;// CONCATENATED MODULE: ./src/components/Home/Home.module.scss
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const Home_module = ({"Home":"Home","zoom":"zoom","Home__info-text":"Home__info-text","Home__timer":"Home__timer","Home__wrapper":"Home__wrapper","Home__title":"Home__title","Home__countdown":"Home__countdown"});
+/* harmony default export */ const Home_module = ({"Home":"Home","Home__info-text":"Home__info-text","Home__timer":"Home__timer","Home__wrapper":"Home__wrapper","Home__title":"Home__title","Home__countdown":"Home__countdown","zoom":"zoom"});
 ;// CONCATENATED MODULE: ./src/assets/Home.jpg
 /* harmony default export */ const Home = (__webpack_require__.p + "7ba22eeec9fb404854bbb56200ffba1a.jpg");
 // EXTERNAL MODULE: ./node_modules/axios/index.js
@@ -30905,12 +32284,12 @@ var Home_Home = () => {
   }, "Pobieramy si\u0119!"), /*#__PURE__*/react.createElement("p", {
     className: Home_style("info-text"),
     id: "title2"
-  }, "Odliczanie do dnia, w kt\xF3rym \u015Blubowa\u0107 b\u0119dziemy sobie mi\u0142o\u015B\u0107")), /*#__PURE__*/react.createElement("div", {
+  }, "Odliczanie do dnia, w kt\xF3rym \u015Blubowa\u0107 b\u0119dziemy sobie mi\u0142o\u015B\u0107"))), /*#__PURE__*/react.createElement("div", {
     ref: el => {
       time = el;
     },
     className: Home_style("countdown")
-  }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy")))))));
+  }, /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerDays), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Dni"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerHours), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Godziny"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerMinutes), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Minuty"))), /*#__PURE__*/react.createElement("span", null, ":"), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("p", null, timerSecounds), /*#__PURE__*/react.createElement("p", null, /*#__PURE__*/react.createElement("small", null, "Sekundy"))))));
 };
 
 /* harmony default export */ const components_Home_Home = (Home_Home);
@@ -32737,11 +34116,11 @@ var Map = () => {
 ;// CONCATENATED MODULE: ./src/assets/music.jpg
 /* harmony default export */ const music = (__webpack_require__.p + "dfe85202446955ab55df01d1fd15c2c5.jpg");
 ;// CONCATENATED MODULE: ./src/components/Music/Music.jsx
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function Music_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Music_ownKeys(Object(source), true).forEach(function (key) { Music_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Music_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function Music_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -33040,8 +34419,9 @@ var Contact = () => {
 
 
 
+
 var Popup_style = (0,bem_css_modules/* default */.Z)(Popup_module);
-var config = {
+var Popup_config = {
   headers: {
     ApiKij: {"apiKey":"12nfhfkjaha983ZKsakjh12989S11"}.apiKey
   }
@@ -33055,15 +34435,15 @@ var Popup_Popup = (_ref) => {
   if (!open) return null;
   var [guests, setGuests] = (0,react.useState)([]);
   var [guests2, setGuests2] = (0,react.useState)([]);
+  var alert = useAlert();
   var history = useHistory();
 
   var updateList = () => {
     var guest = history.location.pathname.substring(1);
-    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), config).then(response => {
+    axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
       if (response.status == 200) {
         setGuests(response.data);
-      } else {
-        alert("Coś poszło nie tak");
+      } else {// alert.show('Coś poszło nie tak')
       }
     }).catch(error => {
       console.log('error');
@@ -33090,7 +34470,7 @@ var Popup_Popup = (_ref) => {
   var handleStatus = (number, item) => {
     var config = {
       headers: {
-        ApiKij: "12nfhfkjaha983ZKsakjh12989S11"
+        ApiKij: {"apiKey":"12nfhfkjaha983ZKsakjh12989S11"}.apiKe
       }
     };
     var data = {
@@ -33104,14 +34484,14 @@ var Popup_Popup = (_ref) => {
       console.log(response.status);
 
       if (response.status == 200) {
-        alert('Dziękujemy za informację');
+        alert.show('Dziękujemy za informację');
         var newArray = [...guests];
         newArray[0].decisionStatus = number;
         console.log(newArray);
         console.log(guests);
         setGuests(newArray);
       } else {
-        alert("Coś poszło nie tak");
+        alert.show('Coś poszło nie tak :(');
       }
     }).catch(error => {
       console.log(error);
@@ -33366,7 +34746,7 @@ function objectSpread2_ownKeys(object, enumerableOnly) {
   return keys;
 }
 
-function _objectSpread2(target) {
+function objectSpread2_objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
 
@@ -33988,7 +35368,7 @@ function applyMiddleware() {
         return middleware(middlewareAPI);
       });
       _dispatch = compose.apply(void 0, chain)(store.dispatch);
-      return _objectSpread2(_objectSpread2({}, store), {}, {
+      return objectSpread2_objectSpread2(objectSpread2_objectSpread2({}, store), {}, {
         dispatch: _dispatch
       });
     };
@@ -34115,6 +35495,10 @@ var rootReducer = combineReducers({
 var store = createStore(rootReducer, applyMiddleware(validateAuthorMiddleware));
 /* harmony default export */ const store_store = (store);
 ;// CONCATENATED MODULE: ./src/App.jsx
+function App_extends() { App_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return App_extends.apply(this, arguments); }
+
+
+
 
 
  //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -34135,6 +35519,18 @@ var store = createStore(rootReducer, applyMiddleware(validateAuthorMiddleware));
 
  //const Navbar = lazy(() => import('./components/Navbar/Navbar'))
 
+var options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE,
+  containerStyle: {
+    zIndex: 1000
+  }
+};
+
 var App = () => {
   var [isMobile, setIsMobile] = (0,react.useState)(false);
 
@@ -34154,7 +35550,9 @@ var App = () => {
     className: "overlay"
   }, /*#__PURE__*/react.createElement("i", {
     className: "fas fa-sync-alt"
-  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(HashRouter, null, /*#__PURE__*/react.createElement(components_Provider, {
+  }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
+    template: react_alert_template_basic
+  }, options), /*#__PURE__*/react.createElement(HashRouter, null, /*#__PURE__*/react.createElement(components_Provider, {
     store: store_store
   }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(react.Suspense, {
     fallback: /*#__PURE__*/react.createElement("div", {
@@ -34169,7 +35567,7 @@ var App = () => {
   }), /*#__PURE__*/react.createElement(Route, {
     path: "/",
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
-  }))))));
+  })))))));
 };
 
 /* harmony default export */ const src_App = (App);
