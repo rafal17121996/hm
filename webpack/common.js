@@ -5,12 +5,14 @@ const webpack = require('webpack')
 const dotenv = require('dotenv')
 
 module.exports = {
-  entry: {
-    index: path(__dirname, "..", "src", "index.js"),
-  },
+  // entry: {
+  //   index: path(__dirname, "..", "src", "index.js"),
+  // },
+  entry: './src/index.js',
   output: {
     filename: "[name].[contenthash:6].js",
     path: path(__dirname, "..", "build"),
+    publicPath: '/'
   },  
   resolve: {
     extensions: [".js", ".jsx"],
@@ -33,6 +35,9 @@ module.exports = {
         ],
       }
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({

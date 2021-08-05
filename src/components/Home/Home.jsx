@@ -138,7 +138,7 @@ const Home = () => {
           <section>
             <p>{timerHours}</p>
             <p>
-              <small>Godziny</small>
+              <small>Godzinyy</small>
             </p>
           </section>
           <span>:</span>
