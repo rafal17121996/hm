@@ -35501,8 +35501,8 @@ function App_extends() { App_extends = Object.assign || function (target) { for 
 
 
 
- //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+ // import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 
 
@@ -35552,7 +35552,7 @@ var App = () => {
     className: "fas fa-sync-alt"
   }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
-  }, options), /*#__PURE__*/react.createElement(HashRouter, null, /*#__PURE__*/react.createElement(components_Provider, {
+  }, options), /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(components_Provider, {
     store: store_store
   }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(react.Suspense, {
     fallback: /*#__PURE__*/react.createElement("div", {
