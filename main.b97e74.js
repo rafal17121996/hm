@@ -35581,9 +35581,9 @@ var App = () => {
   react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
   }, options), /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
-    path: "/about"
+    path: "/:item"
   }, /*#__PURE__*/react.createElement(Details_Details, null)), /*#__PURE__*/react.createElement(Route, {
-    path: "/topics"
+    path: "/xxx"
   }, /*#__PURE__*/react.createElement(Map_Map, null)), /*#__PURE__*/react.createElement(Route, {
     path: "/"
   }, /*#__PURE__*/react.createElement(components_Home_Home, null))))));
