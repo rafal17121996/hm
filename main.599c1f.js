@@ -35005,7 +35005,7 @@ var App = () => {
   }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
   }, options), /*#__PURE__*/react.createElement(BrowserRouter, {
-    basename: "/hm"
+    basename: "/hm/hhh"
   }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
     exact: true,
     path: "/:item",
