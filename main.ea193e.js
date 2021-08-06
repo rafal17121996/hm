@@ -34252,9 +34252,15 @@ var Gallery = () => {
 /* harmony default export */ const morda1 = (__webpack_require__.p + "7e794a30335161e58164a890308688e1.jpg");
 ;// CONCATENATED MODULE: ./src/assets/she1.jpg
 /* harmony default export */ const she1 = (__webpack_require__.p + "ec60a22aa28f47800521eaf6207df0c5.jpg");
+;// CONCATENATED MODULE: ./src/assets/IMG-3005 (1).jpg
+/* harmony default export */ const IMG_3005_1_ = (__webpack_require__.p + "eed3b41e392ebd0353abd0bca6e15820.jpg");
+;// CONCATENATED MODULE: ./src/assets/IMG-3242 (1).jpg
+/* harmony default export */ const IMG_3242_1_ = (__webpack_require__.p + "9211cb16e8eb944be2c5870982a0413b.jpg");
 ;// CONCATENATED MODULE: ./src/assets/he1.jpg
 /* harmony default export */ const he1 = (__webpack_require__.p + "bbc4b9b17fadbe27cda13f8fa4bedb30.jpg");
 ;// CONCATENATED MODULE: ./src/components/Contact/Contact.jsx
+
+
 
 
 
@@ -34277,7 +34283,7 @@ var Contact = () => {
     className: Contact_style("section")
   }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
+    src: IMG_3005_1_
   }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
   }, /*#__PURE__*/react.createElement("a", {
@@ -34291,7 +34297,7 @@ var Contact = () => {
     className: Contact_style("section")
   }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
+    src: IMG_3242_1_
   }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
   }, /*#__PURE__*/react.createElement("a", {
@@ -34349,7 +34355,7 @@ var Contact = () => {
     className: Contact_style("section")
   }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
+    src: IMG_3005_1_
   }), /*#__PURE__*/react.createElement("p", null, "hanna orlikowska"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
   }, /*#__PURE__*/react.createElement("a", {
@@ -34363,7 +34369,7 @@ var Contact = () => {
     className: Contact_style("section")
   }, /*#__PURE__*/react.createElement("img", {
     className: Contact_style("main-img"),
-    src: morda1
+    src: IMG_3242_1_
   }), /*#__PURE__*/react.createElement("p", null, "mi\u0142osz rze\u017Anik"), /*#__PURE__*/react.createElement("p", {
     className: Contact_style("phone")
   }, /*#__PURE__*/react.createElement("a", {
@@ -34419,7 +34425,6 @@ var Popup_Popup = (_ref) => {
   } = _ref;
   if (!open) return null;
   var [guests, setGuests] = (0,react.useState)([]);
-  var [guests2, setGuests2] = (0,react.useState)([]);
   var alert = useAlert();
   var history = useHistory();
 
@@ -34428,10 +34433,12 @@ var Popup_Popup = (_ref) => {
     axios_default().get("https://weddingonline-test.azurewebsites.net/api/guest/getguests/HaniaMi\u0142osz/".concat(guest), Popup_config).then(response => {
       if (response.status == 200) {
         setGuests(response.data);
-      } else {// alert.show('Coś poszło nie tak')
+      } else {
+        alert.show('Coś poszło nie tak');
       }
     }).catch(error => {
       console.log('error');
+      alert.show('Coś poszło nie tak');
     });
   };
 
@@ -34453,9 +34460,10 @@ var Popup_Popup = (_ref) => {
   }, []);
 
   var handleStatus = (number, item) => {
+    var id = guests.findIndex(element => element.guestId === item.guestId);
     var config = {
       headers: {
-        ApiKij: {"apiKey":"12nfhfkjaha983ZKsakjh12989S11"}.apiKe
+        ApiKij: {"apiKey":"12nfhfkjaha983ZKsakjh12989S11"}.apiKey
       }
     };
     var data = {
@@ -34466,20 +34474,17 @@ var Popup_Popup = (_ref) => {
       }]
     };
     axios_default().post("https://weddingonline-test.azurewebsites.net/api/guest/confirm", data, config).then(response => {
-      console.log(response.status);
-
       if (response.status == 200) {
         alert.show('Dziękujemy za informację');
         var newArray = [...guests];
-        newArray[0].decisionStatus = number;
-        console.log(newArray);
-        console.log(guests);
+        newArray[id].decisionStatus = number;
         setGuests(newArray);
       } else {
         alert.show('Coś poszło nie tak :(');
       }
     }).catch(error => {
       console.log(error);
+      alert.show('Coś poszło nie tak :(');
     });
   };
 
@@ -34726,7 +34731,7 @@ function App_extends() { App_extends = Object.assign || function (target) { for 
 var options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
-  timeout: 5000,
+  timeout: 2000,
   offset: "30px",
   // you can also just use 'scale'
   transition: transitions.SCALE,
@@ -34756,9 +34761,7 @@ var App = () => {
     className: "fas fa-sync-alt"
   }), " ", /*#__PURE__*/react.createElement("p", null, "Obr\xF3\u0107 swoje urz\u0105dzenie")) : /*#__PURE__*/react.createElement(react_alert_Provider, App_extends({
     template: react_alert_template_basic
-  }, options), /*#__PURE__*/react.createElement(BrowserRouter, {
-    basename: "hm/"
-  }, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
+  }, options), /*#__PURE__*/react.createElement(BrowserRouter, null, /*#__PURE__*/react.createElement(store_StoreProvider, null, /*#__PURE__*/react.createElement(Switch, null, /*#__PURE__*/react.createElement(Route, {
     exact: true,
     path: "/:item",
     render: () => /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement(Navbar_Navbar, null), /*#__PURE__*/react.createElement(components_Home_Home, null), /*#__PURE__*/react.createElement(Details_Details, null), /*#__PURE__*/react.createElement(Contact_Contact, null), /*#__PURE__*/react.createElement(Confirmation_Confirmation, null), /*#__PURE__*/react.createElement(Gallery_Gallery, null))
